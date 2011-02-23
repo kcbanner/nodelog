@@ -34,7 +34,9 @@ app.configure('production', function(){
 app.get('/', function(req, res){
   res.render('index', {
     locals: {
-      title: settings.title
+      title: settings.title,
+      tagline: settings.tagline,
+      about: settings.about
     }
   });
 });

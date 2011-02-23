@@ -3,4 +3,26 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-  body!= body
+  body
+    div#wrap
+      div#main
+        div.header
+          h1= title
+        div.content
+ 
+      div#nav
+        div.box
+          div.header
+            h3 About
+          div.content
+            p I'm just gonna write alot about myself here!
+        div.box
+          div.header
+            h3 Recent Posts
+          div.content
+            ul
+              li Thing 1
+              li Thing 2
+              li Thing 3
+              li Thing 4
+              li Thing 5

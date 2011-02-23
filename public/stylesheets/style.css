@@ -149,9 +149,9 @@ body {
 }
 h1, h2, h3 {
   font-family: 'GoudyBookletter1911Regular', 'helvetica neue', serif;
-  display: inline-block;
 }
 h1 {
+  font-weight: bold;
   font-size: 40px;
 }
 h2 {
@@ -163,8 +163,30 @@ h3 {
 p {
   padding: 5px;
 }
+a {
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  color: #4d4d4d;
+}
 li {
   padding: 2px;
+}
+article {
+  margin-bottom: 30px;
+}
+article header {
+  margin-bottom: 5px;
+}
+article header h2 {
+  padding: 5px;
+  border-bottom: 1px dashed #bad5dd;
+}
+article header .date {
+  padding: 5px;
+  font-size: 14px;
+  display: inline-block;
 }
 .header {
   text-shadow: 0px 1px 1px #5496aa;
@@ -230,6 +252,9 @@ li {
 }
 #main .header h2 {
   float: right;
+}
+#main .content {
+  padding: 20px;
 }
 #nav {
   float: left;

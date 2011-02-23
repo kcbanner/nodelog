@@ -100,11 +100,11 @@ body {
 h1,h2,h3
 { 
   font-family: 'GoudyBookletter1911Regular', 'helvetica neue', serif;
-  display: inline-block;
 }
 
 h1
 {
+  font-weight: bold;
   font-size: 40px;
 }
 
@@ -123,9 +123,50 @@ p
   padding: 5px;
 }
 
+@link-color: #000000;
+
+a
+{ 
+  text-decoration: none;
+  color: black;
+
+  &:hover
+  { 
+    color: lighten(@link-color, 30%);
+  }
+}
+
+ul
+{ 
+
+}
+
 li
 { 
   padding: 2px;
+}
+
+article
+{ 
+  margin-bottom: 30px;
+
+  header
+  { 
+    margin-bottom: 5px;
+
+    h2 
+    { 
+      padding: 5px;
+      border-bottom: 1px dashed lighten(@border-color, 50%);
+    }
+
+    .date
+    { 
+      padding: 5px;
+      font-size: 14px;
+      display: inline-block;
+    }
+  }
 }
 
 .header
@@ -192,6 +233,11 @@ li
     overflow: hidden;
     h1 { float: left; }
     h2 { float: right; }
+  }
+
+  .content
+  { 
+    padding: 20px;
   }
 }
 

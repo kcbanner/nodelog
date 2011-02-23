@@ -8,6 +8,7 @@ var Post = new Schema({
   title: String,
   permalink: String,
   content: String,
+  date: Date,
   published: {type: Boolean, default: false}
 });
 

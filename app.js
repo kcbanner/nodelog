@@ -32,12 +32,22 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', function(req, res){
+  var posts = [{title: 'This is the test title',
+               permalink: 'test-link-1',
+               content: 'This is a really long post, not much here just a bunch of words bla bla bla',
+               date: new Date()},
+               {title: 'This is the test title #2',
+               permalink: 'test-link-2',
+               content: 'This is a really long post, not much here just a bunch of words bla bla bla',
+               date: new Date()}];
+  
   res.render('index', {
     locals: {
       title: settings.title,
       tagline: settings.tagline,
       about: settings.about,
-      links: settings.links
+      links: settings.links,
+      posts: posts
     }
   });
 });

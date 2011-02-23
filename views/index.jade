@@ -1,2 +1,9 @@
-h1= title
-p Welcome to #{title}
+- each post in posts
+  article
+    header
+      a(href: '/post/'+post['permalink'])
+        h2= post['title']
+      span.date #{post['date']}
+    p #{post['content']}
+    footer
+    

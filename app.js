@@ -36,7 +36,8 @@ app.get('/', function(req, res){
     locals: {
       title: settings.title,
       tagline: settings.tagline,
-      about: settings.about
+      about: settings.about,
+      links: settings.links
     }
   });
 });

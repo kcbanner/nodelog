@@ -160,6 +160,12 @@ h2 {
 h3 {
   font-weight: bold;
 }
+p {
+  padding: 5px;
+}
+li {
+  padding: 2px;
+}
 .header {
   text-shadow: 0px 1px 1px #5496aa;
   background-color: #325a66;

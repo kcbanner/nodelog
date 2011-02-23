@@ -16,7 +16,8 @@ html
           div.header
             h3 About
           div.content
-            p= about
+            - each line in about
+              p #{line}
         div.box
           div.header
             h3 Recent Posts
@@ -27,3 +28,12 @@ html
               li Thing 3
               li Thing 4
               li Thing 5
+
+        div.box
+          div.header
+            h3 Etc.
+          div.content
+            ul
+              - each link in links
+                li
+                  a(href: link[1]) #{link[0]}

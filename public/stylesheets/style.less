@@ -123,16 +123,16 @@ p
   padding: 5px;
 }
 
-@link-color: #000000;
+@link-color: #A32B26;
 
 a
 { 
   text-decoration: none;
-  color: black;
+  color: @link-color;
 
   &:hover
   { 
-    color: lighten(@link-color, 30%);
+    text-decoration: underline;
   }
 }
 
@@ -154,16 +154,27 @@ article
   { 
     margin-bottom: 5px;
 
-    h2 
+    a
     { 
-      padding: 5px;
-      border-bottom: 1px dashed lighten(@border-color, 50%);
+      color: black;
+      &:hover
+      { 
+        color: @link-color;
+        text-decoration: none;
+      }
+      
+      h2 
+      { 
+        padding: 5px;
+        border-bottom: 1px dashed lighten(@border-color, 20%);
+      }
     }
 
     .date
     { 
       padding: 5px;
       font-size: 14px;
+      color: lighten(@border-color, 20%);
       display: inline-block;
     }
   }
@@ -216,21 +227,26 @@ article
   float: left;
 
   text-align: left;
-  border-right: 2px dashed @border-color;
-  border-left: 2px dashed @border-color;
+  border-right: 1px dashed @border-color;
+  border-left: 1px dashed @border-color;
   height: 100%;
   background-color: white;
   .shadow;
 
   .header
   { 
-    margin-top: 20px;
+    margin-top: 10px;
     line-height: 65px;
     padding-left: 20px;
     padding-right: 20px;  
     border-top: 2px dashed lighten(@border-color, 30%);
     border-bottom: 2px dashed lighten(@border-color, 30%);
     overflow: hidden;
+
+    -moz-box-shadow: 0 0  7px @shadow-color;
+    -webkit-box-shadow: 0 0 7px @shadow-color;
+    box-shadow: 0 0 7px @shadow-color;
+
     h1 { float: left; }
     h2 { float: right; }
   }

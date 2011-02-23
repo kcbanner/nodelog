@@ -165,10 +165,10 @@ p {
 }
 a {
   text-decoration: none;
-  color: black;
+  color: #a32b26;
 }
 a:hover {
-  color: #4d4d4d;
+  text-decoration: underline;
 }
 li {
   padding: 2px;
@@ -179,13 +179,21 @@ article {
 article header {
   margin-bottom: 5px;
 }
-article header h2 {
+article header a {
+  color: black;
+}
+article header a:hover {
+  color: #a32b26;
+  text-decoration: none;
+}
+article header a h2 {
   padding: 5px;
-  border-bottom: 1px dashed #bad5dd;
+  border-bottom: 1px dashed #5496aa;
 }
 article header .date {
   padding: 5px;
   font-size: 14px;
+  color: #5496aa;
   display: inline-block;
 }
 .header {
@@ -230,8 +238,8 @@ article header .date {
   width: 700px;
   float: left;
   text-align: left;
-  border-right: 2px dashed #325a66;
-  border-left: 2px dashed #325a66;
+  border-right: 1px dashed #325a66;
+  border-left: 1px dashed #325a66;
   height: 100%;
   background-color: white;
   -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
@@ -239,13 +247,16 @@ article header .date {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 #main .header {
-  margin-top: 20px;
+  margin-top: 10px;
   line-height: 65px;
   padding-left: 20px;
   padding-right: 20px;
   border-top: 2px dashed #75abbc;
   border-bottom: 2px dashed #75abbc;
   overflow: hidden;
+  -moz-box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
 }
 #main .header h1 {
   float: left;

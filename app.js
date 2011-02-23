@@ -5,6 +5,7 @@
 
 var express = require('express');
 var settings = require('./settings');
+var models = require('./models');
 
 var app = module.exports = express.createServer();
 
@@ -33,7 +34,7 @@ app.configure('production', function(){
 app.get('/', function(req, res){
   res.render('index', {
     locals: {
-      title: 'Express'
+      title: settings.title
     }
   });
 });

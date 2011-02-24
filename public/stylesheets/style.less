@@ -73,6 +73,8 @@ html, body
 
 @border-color: #325A66;
 @shadow-color: rgba(0, 0, 0, 0.5);
+@dark-text-background: #E1EFF2;
+@link-color: #A32B26;
 
 .shadow
 { 
@@ -122,8 +124,6 @@ p
 { 
   padding: 5px;
 }
-
-@link-color: #A32B26;
 
 a
 { 
@@ -196,7 +196,7 @@ article
   }
 }
 
-.header
+.gradient
 { 
   .light-text-shadow;
   background-color: @border-color;
@@ -207,7 +207,6 @@ article
 
 .box
 { 
-  background-color: white;
   width: 200px;
   margin: 20px; 
   vertical-align: text-top;
@@ -237,56 +236,77 @@ article
   height: 100%;
 }
 
+.light-border
+{ 
+  border-left: 2px dashed lighten(@border-color, 30%);
+  border-right: 2px dashed lighten(@border-color, 30%);
+}
+
 #main
 {
   width: 700px;
-  float: left;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
 
   text-align: left;
-  border-right: 1px dashed @border-color;
-  border-left: 1px dashed @border-color;
-  background-color: white;
+  border-right: 1px solid @border-color;
+  border-left: 1px solid @border-color;
+  background-color: @dark-text-background;
   .shadow;
+
+  header
+  { 
+    padding-top: 20px;
+
+    #title
+    { 
+      line-height: 65px;
+      padding-left: 20px;
+      padding-right: 20px;
+      .gradient;
+
+      border-top: 2px dashed lighten(@border-color, 30%);
+      border-bottom: 2px dashed lighten(@border-color, 30%);
+      overflow: hidden;
+
+      -moz-box-shadow: 0 0  3px @shadow-color;
+      -webkit-box-shadow: 0 0 3px @shadow-color;
+      box-shadow: 0 0 3px @shadow-color;
+
+      a 
+      { 
+        color: black;
+        &:hover
+        { 
+          text-decoration: none;
+        }
+      }
+
+      h1
+      {
+        float: left;
+        color: black;
+      }
+  
+      h2 { float: right; }
+    }
+  }
 
   .header
   { 
-    margin-top: 20px;
-    line-height: 65px;
-    padding-left: 20px;
-    padding-right: 20px;  
-    border-top: 2px dashed lighten(@border-color, 30%);
-    border-bottom: 2px dashed lighten(@border-color, 30%);
-    overflow: hidden;
 
-    -moz-box-shadow: 0 0  7px @shadow-color;
-    -webkit-box-shadow: 0 0 7px @shadow-color;
-    box-shadow: 0 0 7px @shadow-color;
-
-    a
-    { 
-      color: black;
-      &:hover
-      { 
-        text-decoration: none;
-      }
-    }
-
-    h1
-    {
-      float: left;
-      color: black;
-    }
-
-    h2 { float: right; }
   }
 
   .content
   { 
     padding: 20px;
+    .light-border;
   }
 }
 
 #nav
 { 
-  float: left;
+  display: inline-block;
+  float: right;
 }

@@ -105,6 +105,9 @@ body {
 ol, ul {
   list-style: none;
 }
+a {
+  color: black;
+}
 blockquote, q {
   quotes: none;
 }
@@ -173,23 +176,43 @@ a:hover {
   margin: 0 auto;
 }
 #content {
-  padding-top: 90px;
+  padding-top: 80px;
   padding-left: 20px;
   padding-right: 20px;
   border: 2px solid #7a201c;
+}
+.red-background {
+  background-color: #a32b26;
+  text-shadow: 0px 1px 1px #cc3630;
+}
+.red-background a {
+  color: black;
+  -webkit-transition: color 0.1s;
+}
+.red-background a:hover {
+  text-decoration: none;
+  color: #501513;
 }
 #masthead {
   position: fixed;
   top: 0px;
   left: 0px;
   width: 100%;
-  background-color: #a32b26;
   padding: 10px;
   border-bottom: 4px solid #7a201c;
-  text-shadow: 0px 1px 1px #cc3630;
   overflow: hidden;
   height: 39px;
   text-align: right;
+  background-color: #a32b26;
+  text-shadow: 0px 1px 1px #cc3630;
+}
+#masthead a {
+  color: black;
+  -webkit-transition: color 0.1s;
+}
+#masthead a:hover {
+  text-decoration: none;
+  color: #501513;
 }
 #masthead ul {
   float: right;
@@ -213,14 +236,6 @@ a:hover {
   padding: 0.2em 0.2em;
   border: 1px solid #7a201c;
 }
-#masthead a {
-  color: black;
-  -webkit-transition: color 0.1s;
-}
-#masthead a:hover {
-  text-decoration: none;
-  color: #501513;
-}
 #masthead h1 {
   float: left;
 }
@@ -236,7 +251,6 @@ article {
   text-align: left;
   padding-bottom: 20px;
   margin-bottom: 25px;
-  border-bottom: 1px solid #7a201c;
 }
 article p {
   padding-left: 10px;
@@ -245,13 +259,18 @@ article p {
 }
 article header {
   margin-bottom: 15px;
+  padding: 5px;
+  border: 2px solid #7a201c;
+  background-color: #a32b26;
+  text-shadow: 0px 1px 1px #cc3630;
 }
 article header a {
   color: black;
+  -webkit-transition: color 0.1s;
 }
 article header a:hover {
   text-decoration: none;
-  color: #a32b26;
+  color: #501513;
 }
 article img, article object {
   display: block;

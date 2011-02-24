@@ -145,7 +145,7 @@ a
 
 #content
 { 
-  padding-top: 90px;
+  padding-top: 80px;
   padding-left: 20px;
   padding-right: 20px;
 
@@ -161,19 +161,35 @@ a
 
 }
 
+.red-background
+{ 
+  background-color: @red-background;
+  text-shadow: 0px 1px 1px lighten(@red-background, 10%);
+
+  a
+  { 
+    color: black;
+    -webkit-transition: color 0.1s;
+    &:hover
+    {
+      text-decoration: none; 
+      color: darken(@dark-border, 10%);
+    }
+  }
+}
+
 #masthead
 { 
   position: fixed;
   top: 0px;
   left: 0px;
   width: 100%;
-  background-color: @red-background;
   padding: 10px;
   border-bottom: 4px solid @dark-border;
-  text-shadow: 0px 1px 1px lighten(@red-background, 10%);
   overflow: hidden;
   height: 39px;
   text-align: right;
+  .red-background;
 
   ul
   { 
@@ -203,17 +219,6 @@ a
     }
   }
 
-  a
-  { 
-    color: black;
-    -webkit-transition: color 0.1s;
-    &:hover
-    {
-      text-decoration: none; 
-      color: darken(@dark-border, 10%);
-    }
-  }
-
   h1
   { 
     float: left;
@@ -237,7 +242,6 @@ article
   text-align: left;
   padding-bottom: 20px;
   margin-bottom: 25px;
-  border-bottom: 1px solid @dark-border;
  
   p
   {
@@ -249,16 +253,9 @@ article
   header
   { 
     margin-bottom: 15px;
-
-    a
-    { 
-      color: black;
-      &:hover
-      {
-        text-decoration: none; 
-        color: @red-background;
-      }
-    }
+    padding: 5px;
+    border: 2px solid @dark-border;
+    .red-background;
   }
 
   img, object

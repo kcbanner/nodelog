@@ -42,14 +42,17 @@ sys.inherits(NotFound, Error);
 
 app.error(function(err, req, res, next){
   if (err instanceof NotFound) {
-    res.render('404', {
-      status: 404,
-      locals: {
-        title: settings.title,
-        tagline: settings.tagline,
-        about: settings.about,
-        links: settings.links
-      }
+    load_recent_posts(req, res, function() {
+      res.render('404', {
+        status: 404,
+        locals: {
+          title: settings.title,
+          tagline: settings.tagline,
+          about: settings.about,
+          links: settings.links,
+          recent_posts: req.recent_posts
+        }
+      });
     });
   } else {
     next(err);

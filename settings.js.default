@@ -1,2 +1,8 @@
 exports.port = 3001;
 exports.title = 'Nodelog Blog';
+exports.tagline = 'Another Blog!';
+exports.about = ['A line', 'in the about box'];
+exports.links = [['Twitter', 'http://twitter.com/'], ['RSS', '/feed']];
+exports.db = 'nodelog';
+exports.front_page_posts = 3;
+exports.recent_posts = 10;

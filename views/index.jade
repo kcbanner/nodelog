@@ -1,9 +1,9 @@
 - each post in posts
   article
     header
-      a(href: '/post/'+post['permalink'])
+      a(href: post.date.toString('yyyy/MM/dd/')+post.permalink)
         h2= post['title']
-      span.date #{post['date']}
-    p #{post['content']}
+      span.date #{post.date.toString('MMMM dS, yyyy')}
+    p!= post.content
     footer
     

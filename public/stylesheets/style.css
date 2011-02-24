@@ -144,11 +144,11 @@ body {
   text-align: center;
   min-width: 850px;
   background-color: #494e4f;
-  font-family: 'helvetica neue', serif;
-  font-size: 17px;
+  font-family: 'Georgia', 'helvetica neue', serif;
+  font-size: 16px;
 }
 h1, h2, h3 {
-  font-family: 'GoudyBookletter1911Regular', 'helvetica neue', serif;
+  font-family: 'GoudyBookletter1911Regular', serif;
 }
 h1 {
   font-weight: bold;
@@ -174,7 +174,18 @@ li {
   padding: 2px;
 }
 article {
-  margin-bottom: 30px;
+  margin-bottom: 25px;
+}
+article p {
+  line-height: 1.3em;
+}
+article img, article object {
+  display: block;
+  padding: 2px;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px dashed #325a66;
 }
 article header {
   margin-bottom: 5px;
@@ -186,7 +197,7 @@ article header a:hover {
   color: #a32b26;
   text-decoration: none;
 }
-article header a h2 {
+article header h2 {
   padding: 5px;
   border-bottom: 1px dashed #5496aa;
 }
@@ -240,7 +251,6 @@ article header .date {
   text-align: left;
   border-right: 1px dashed #325a66;
   border-left: 1px dashed #325a66;
-  height: 100%;
   background-color: white;
   -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
@@ -258,8 +268,15 @@ article header .date {
   -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
 }
+#main .header a {
+  color: black;
+}
+#main .header a:hover {
+  text-decoration: none;
+}
 #main .header h1 {
   float: left;
+  color: black;
 }
 #main .header h2 {
   float: right;

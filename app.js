@@ -4,7 +4,10 @@
  */
 
 var express = require('express');
+var mongoose = require('mongoose');
+
 var settings = require('./settings');
+var db = mongoose.connect('mongodb://localhost/'+settings.db);
 var models = require('./models');
 var date = require('datejs');
 
@@ -31,28 +34,40 @@ app.configure('production', function(){
 });
 
 // Routes
-
 app.get('/', function(req, res){
-  var posts = [{title: 'This is the test title',
-               permalink: 'test-link-1',
-               content: 'This is a really long post, not much here just a bunch of words bla bla bla.',
-               date: new Date().toString('MMMM dS')},
-               {title: 'This is the test title #2',
-               permalink: 'test-link-2',
-               content: 'This is a really long post, not much here just a bunch of words bla bla bla.',
-               date: new Date().toString('MMMM dS')}];
-  
-  res.render('index', {
-    locals: {
-      title: settings.title,
-      tagline: settings.tagline,
-      about: settings.about,
-      links: settings.links,
-      posts: posts
-    }
+  var q = models.Post.find({published: true}).sort('date', -1).limit(settings.front_page_posts);
+  q.execFind(function(err, posts) {
+    res.render('index', {
+      locals: {
+        title: settings.title,
+        tagline: settings.tagline,
+        about: settings.about,
+        links: settings.links,
+        posts: posts
+      }
+    });
   });
 });
 
+app.get(/^\/(\d{4})\/(\d{2})\/(\d{2})\/([a-zA-Z-0-9]+)\/?/, function(req, res){
+  var q = models.Post.findOne({published: true, permalink: req.params[3]});
+  q.execFind(function(err, posts) {
+    if(posts.length == 0) {
+      // 404
+      res.send('404', 404);
+    } else {
+      res.render('post', {
+        locals: {
+          title: settings.title,
+          tagline: settings.tagline,
+          about: settings.about,
+          links: settings.links,
+          post: posts[0]
+        }
+      });
+    }
+  });
+});
 
 
 // Only listen on $ node app.js

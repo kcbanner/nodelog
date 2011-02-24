@@ -1,7 +1,9 @@
-var mongoose = require('mongoose');
-var db = mongoose.connect('mongodb://localhost/nodelog');
-var models = require('../models');
 var csv = require('csv');
+var mongoose = require('mongoose');
+
+var settings = require('../settings');
+var db = mongoose.connect('mongodb://localhost/'+settings.db);
+var models = require('../models');
 
 var filename = process.argv[2];
 if(filename) {
@@ -10,7 +12,7 @@ if(filename) {
   var count = 0;
   csv().fromPath(filename, {columns: true}).on('data', function(data, index) {
     var permalink_sections = data['Permalink'].match(/(\d{4})\/(\d{2})\/(\d{2})\/([a-zzA-Z-0-9]*)/);
-    var date = new Date(permalink_sections[1], permalink_sections[2], permalink_sections[3]);
+    var date = new Date(permalink_sections[1], permalink_sections[2]-1, permalink_sections[3], 0, 0, 0, 0);
 
     var post = new models.Post({
       author: data['Author Email'],

@@ -93,13 +93,13 @@ body {
   text-align: center;
   min-width: 850px;
   background-color: desaturate(@border-color, 30%);
-  font-family: 'helvetica neue', serif;
-  font-size: 17px;
+  font-family: 'Georgia', 'helvetica neue', serif;
+  font-size: 16px;
 }
 
 h1,h2,h3
 { 
-  font-family: 'GoudyBookletter1911Regular', 'helvetica neue', serif;
+  font-family: 'GoudyBookletter1911Regular', serif;
 }
 
 h1
@@ -148,7 +148,22 @@ li
 
 article
 { 
-  margin-bottom: 30px;
+  margin-bottom: 25px;
+
+  p
+  {
+    line-height: 1.3em; 
+  }
+
+  img, object
+  {
+    display: block;
+    padding: 2px;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px dashed @border-color;
+  }
 
   header
   { 
@@ -161,14 +176,15 @@ article
       { 
         color: @link-color;
         text-decoration: none;
-      }
-      
-      h2 
-      { 
-        padding: 5px;
-        border-bottom: 1px dashed lighten(@border-color, 20%);
-      }
+      }      
     }
+
+    h2 
+    { 
+      padding: 5px;
+      border-bottom: 1px dashed lighten(@border-color, 20%);
+    }
+
 
     .date
     { 
@@ -229,7 +245,6 @@ article
   text-align: left;
   border-right: 1px dashed @border-color;
   border-left: 1px dashed @border-color;
-  height: 100%;
   background-color: white;
   .shadow;
 
@@ -247,7 +262,21 @@ article
     -webkit-box-shadow: 0 0 7px @shadow-color;
     box-shadow: 0 0 7px @shadow-color;
 
-    h1 { float: left; }
+    a
+    { 
+      color: black;
+      &:hover
+      { 
+        text-decoration: none;
+      }
+    }
+
+    h1
+    {
+      float: left;
+      color: black;
+    }
+
     h2 { float: right; }
   }
 

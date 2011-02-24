@@ -165,12 +165,18 @@ a {
 a:hover {
   text-decoration: underline;
 }
-div.centered {
+.center {
+  text-align: center;
+}
+.centered {
   width: 700px;
   margin: 0 auto;
 }
 #content {
-  margin-top: 80px;
+  padding-top: 90px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 2px solid #7a201c;
 }
 #masthead {
   position: fixed;
@@ -204,12 +210,16 @@ div.centered {
   font-family: 'BebasRegular', serif;
   font-size: 14px;
   cursor: pointer;
-  color: black;
   padding: 0.2em 0.2em;
   border: 1px solid #7a201c;
 }
-#masthead ul li a:hover {
-  background-color: #7a201c;
+#masthead a {
+  color: black;
+  -webkit-transition: color 0.1s;
+}
+#masthead a:hover {
+  text-decoration: none;
+  color: #501513;
 }
 #masthead h1 {
   float: left;
@@ -218,13 +228,20 @@ div.centered {
   float: right;
   font-size: 20px;
 }
+article:nth-last-child(1) {
+  margin-bottom: 0px;
+  border-bottom: none;
+}
 article {
   text-align: left;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
   margin-bottom: 25px;
+  border-bottom: 1px solid #7a201c;
 }
 article p {
   padding-left: 10px;
+  line-height: 1.3em;
+  font-size: 14px;
 }
 article header {
   margin-bottom: 15px;
@@ -238,11 +255,8 @@ article header a:hover {
 }
 article img, article object {
   display: block;
-  margin-left: 10px;
-  margin-top: 10px;
+  margin-left: 15px;
+  margin-top: 15px;
   margin-bottom: 10px;
-  border: 4px solid #7a201c;
-}
-article img:hover, article object:hover {
-  border: 4px solid #a32b26;
+  border: 1px solid #7a201c;
 }

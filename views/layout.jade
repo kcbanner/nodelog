@@ -7,13 +7,13 @@ html
     section
       header#masthead
         div.centered
-          h1= title
+          a(href: '/')
+            h1= title
           h2= tagline
           ul
             - each link in links
               li
                 a(href: link[1])= link[0]
-      section#content
-        div.centered!= body
+      section#content.centered!= body
 
       section#nav

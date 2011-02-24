@@ -35,11 +35,11 @@ app.configure('production', function(){
 app.get('/', function(req, res){
   var posts = [{title: 'This is the test title',
                permalink: 'test-link-1',
-               content: 'This is a really long post, not much here just a bunch of words bla bla bla',
+               content: 'This is a really long post, not much here just a bunch of words bla bla bla.',
                date: new Date().toString('MMMM dS')},
                {title: 'This is the test title #2',
                permalink: 'test-link-2',
-               content: 'This is a really long post, not much here just a bunch of words bla bla bla',
+               content: 'This is a really long post, not much here just a bunch of words bla bla bla.',
                date: new Date().toString('MMMM dS')}];
   
   res.render('index', {

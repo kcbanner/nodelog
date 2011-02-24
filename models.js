@@ -12,6 +12,8 @@ var Post = new Schema({
   published: {type: Boolean, default: false}
 });
 
+Post.index({date: 1, permalink: 1}, {unique: true});
+
 mongoose.model('Post', Post);
 
 exports.Post = mongoose.model('Post');

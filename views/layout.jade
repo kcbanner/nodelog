@@ -24,11 +24,10 @@ html
             h3 Recent Posts
           div.content
             ul
-              li Thing 1
-              li Thing 2
-              li Thing 3
-              li Thing 4
-              li Thing 5
+              - each recent_post in recent_posts
+                li
+                  a(href: '/'+recent_post.date.toString('yyyy/MM/dd/')+recent_post.permalink)
+                    #{recent_post.title}
 
         div.box
           div.header

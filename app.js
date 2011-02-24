@@ -1,8 +1,8 @@
-
 /**
- * Module dependencies.
+ * NodeLog
  */
 
+var sys = require('sys');
 var express = require('express');
 var mongoose = require('mongoose');
 
@@ -14,14 +14,12 @@ var date = require('datejs');
 var app = module.exports = express.createServer();
 
 // Configuration
-
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.bodyDecoder());
   app.use(express.methodOverride());
   app.use(express.compiler({ src: __dirname + '/public', enable: ['less'] }));
-  app.use(app.router);
   app.use(express.staticProvider(__dirname + '/public'));
 });
 
@@ -30,31 +28,63 @@ app.configure('development', function(){
 });
 
 app.configure('production', function(){
-  app.use(express.errorHandler()); 
+  app.use(express.errorHandler());
 });
 
-// Routes
-app.get('/', function(req, res){
-  var q = models.Post.find({published: true}).sort('date', -1).limit(settings.front_page_posts);
-  q.execFind(function(err, posts) {
-    res.render('index', {
+// Error handling
+function NotFound(msg){
+  this.name = 'NotFound';
+  Error.call(this, msg);
+  Error.captureStackTrace(this, arguments.callee);
+}
+
+sys.inherits(NotFound, Error);
+
+app.error(function(err, req, res, next){
+  if (err instanceof NotFound) {
+    res.render('404', {
+      status: 404,
       locals: {
         title: settings.title,
         tagline: settings.tagline,
         about: settings.about,
-        links: settings.links,
-        posts: posts
+        links: settings.links
       }
     });
+  } else {
+    next(err);
+  }
+});
+
+// Middleware
+function load_recent_posts(req, res, next) {
+  var q = models.Post.find({published: true}).sort('date', -1).limit(settings.recent_posts);
+  q.execFind(function(err, posts) {
+    req.recent_posts = posts;
+    next();
+  });
+}
+
+// Routes
+app.get('/', load_recent_posts, function(req, res){
+  res.render('index', {
+    locals: {
+      title: settings.title,
+      tagline: settings.tagline,
+      about: settings.about,
+      links: settings.links,
+      recent_posts: req.recent_posts,
+      posts: req.recent_posts.slice(0, settings.front_page_posts)
+    }
   });
 });
 
-app.get(/^\/(\d{4})\/(\d{2})\/(\d{2})\/([a-zA-Z-0-9]+)\/?/, function(req, res){
+app.get(/^\/(\d{4})\/(\d{2})\/(\d{2})\/([a-zA-Z-0-9]+)\/?/, load_recent_posts, function(req, res, next){
   var q = models.Post.findOne({published: true, permalink: req.params[3]});
   q.execFind(function(err, posts) {
     if(posts.length == 0) {
       // 404
-      res.send('404', 404);
+      return next(new NotFound);
     } else {
       res.render('post', {
         locals: {
@@ -62,6 +92,7 @@ app.get(/^\/(\d{4})\/(\d{2})\/(\d{2})\/([a-zA-Z-0-9]+)\/?/, function(req, res){
           tagline: settings.tagline,
           about: settings.about,
           links: settings.links,
+          recent_posts: req.recent_posts,
           post: posts[0]
         }
       });
@@ -69,6 +100,14 @@ app.get(/^\/(\d{4})\/(\d{2})\/(\d{2})\/([a-zA-Z-0-9]+)\/?/, function(req, res){
   });
 });
 
+app.get('/admin', function(req, res) {
+  
+});
+
+// 404
+app.all('*', function(req, res) {
+  throw new NotFound;
+});
 
 // Only listen on $ node app.js
 if (!module.parent) {

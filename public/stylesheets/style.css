@@ -144,7 +144,7 @@ body {
   background-color: white;
   font-family: 'Georgia', 'helvetica neue', serif;
   font-size: 16px;
-  background-color: #c9a76e;
+  background-color: #3D3D3D;
 }
 h1, h2, h3 {
   font-family: 'BebasRegular', serif;
@@ -180,7 +180,7 @@ a:hover {
   padding-top: 80px;
   padding-left: 20px;
   padding-right: 20px;
-  background-color: #ded3c3;
+  background-color: #f8f7ff;
   border: 2px solid #781a17;
 }
 .red-background {

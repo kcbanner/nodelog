@@ -1,0 +1,13 @@
+table
+  thead
+    tr
+      th Title
+      th Date
+      th Published
+  tbody
+    - each post in posts
+      tr
+        td
+          a(href: '/admin/edit/'+post.id)= post.title
+        td= post.date.toString('MMMM, dd, yyyy')
+        td= post.published

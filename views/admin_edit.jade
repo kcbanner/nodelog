@@ -1,0 +1,14 @@
+:javascript
+  | bkLib.onDomLoaded(function() { nicEditors.allTextAreas({buttonList : ['bold','italic','underline','strikeThrough','subscript','superscript', 'xhtml', 'image', 'link', 'unlink']}) });
+article
+  form(method: "POST")
+    label Title
+    input(name: 'title', value: post.title)
+    label Permalink
+    input(name: 'permalink', value: post.permalink)
+    br
+
+    label Content
+    textarea(name: 'content', cols: 80, rows: 30)= post.content
+
+    input(type: 'submit', value: 'Save')

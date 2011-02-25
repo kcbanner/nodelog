@@ -104,7 +104,60 @@ app.get(/^\/(\d{4})\/(\d{2})\/(\d{2})\/([a-zA-Z-0-9]+)\/?/, load_recent_posts, f
 });
 
 app.get('/admin', function(req, res) {
-  
+  var q = models.Post.find({}).sort('date', -1);
+  q.execFind(function(err, posts) {
+    res.render('admin', {
+      locals: {
+        title: settings.title,
+        tagline: settings.tagline,
+        about: settings.about,
+        links: settings.links,
+        recent_posts: [],
+        posts: posts
+      },
+    });
+  });
+});
+
+/* Admin Editing */
+app.get('/admin/edit/:id', function(req, res, next) {
+  var q = models.Post.find({_id: req.params.id});
+  q.execFind(function(err, posts) {
+    var locals = {
+      title: settings.title,
+      tagline: settings.tagline,
+      about: settings.about,
+      links: settings.links,
+      recent_posts: []
+    };
+    
+    if(posts) {
+      locals['post'] = posts[0];
+    } else {
+      return next(new NotFound);
+    }
+
+    return res.render('admin_edit', { locals: locals });
+  });
+});
+
+app.post('/admin/edit/:id', function(req, res) {
+  var q = models.Post.find({_id: req.params.id});
+  q.execFind(function(err, posts) {
+    if(posts.length == 1) {
+      var post = posts[0];
+      console.log(req.params);
+      post.title = req.param('title');
+      post.permalink = req.param('permalink');
+      post.content = req.param('content');
+      
+      post.save(function(err) {
+        res.redirect('/admin/edit/'+post.id);
+      });
+    } else {
+      return next(new NotFound);
+    }
+  });
 });
 
 // 404

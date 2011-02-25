@@ -281,3 +281,16 @@ article img, article object {
   margin-bottom: 10px;
   border: 1px solid #781a17;
 }
+/* Admin */
+table {
+  border: 1px solid #781a17;
+  width: 100%;
+}
+table th {
+  font-weight: bold;
+}
+table th, table td {
+  border: 1px solid #781a17;
+  padding: 3px;
+  text-align: left;
+}

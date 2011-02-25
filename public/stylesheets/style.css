@@ -105,9 +105,6 @@ body {
 ol, ul {
   list-style: none;
 }
-a {
-  color: black;
-}
 blockquote, q {
   quotes: none;
 }
@@ -132,9 +129,9 @@ html, body {
   font-style: normal;
 }
 .shadow {
-  -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
 }
 .light-text-shadow {
   text-shadow: 0px 1px 1px #edcc97;
@@ -147,6 +144,7 @@ body {
   background-color: white;
   font-family: 'Georgia', 'helvetica neue', serif;
   font-size: 16px;
+  background-color: #c9a76e;
 }
 h1, h2, h3 {
   font-family: 'BebasRegular', serif;
@@ -176,14 +174,18 @@ a:hover {
   margin: 0 auto;
 }
 #content {
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
   padding-top: 80px;
   padding-left: 20px;
   padding-right: 20px;
-  border: 2px solid #7a201c;
+  background-color: #ded3c3;
+  border: 2px solid #781a17;
 }
 .red-background {
-  background-color: #a32b26;
-  text-shadow: 0px 1px 1px #cc3630;
+  background-color: #a3231f;
+  text-shadow: 0px 1px 1px #ce2c27;
 }
 .red-background a {
   color: black;
@@ -191,7 +193,7 @@ a:hover {
 }
 .red-background a:hover {
   text-decoration: none;
-  color: #501513;
+  color: #4d110f;
 }
 #masthead {
   position: fixed;
@@ -199,12 +201,12 @@ a:hover {
   left: 0px;
   width: 100%;
   padding: 10px;
-  border-bottom: 4px solid #7a201c;
+  border-bottom: 4px solid #781a17;
   overflow: hidden;
   height: 39px;
   text-align: right;
-  background-color: #a32b26;
-  text-shadow: 0px 1px 1px #cc3630;
+  background-color: #a3231f;
+  text-shadow: 0px 1px 1px #ce2c27;
 }
 #masthead a {
   color: black;
@@ -212,7 +214,7 @@ a:hover {
 }
 #masthead a:hover {
   text-decoration: none;
-  color: #501513;
+  color: #4d110f;
 }
 #masthead ul {
   float: right;
@@ -234,7 +236,7 @@ a:hover {
   font-size: 14px;
   cursor: pointer;
   padding: 0.2em 0.2em;
-  border: 1px solid #7a201c;
+  border: 1px solid #781a17;
 }
 #masthead h1 {
   float: left;
@@ -260,9 +262,9 @@ article p {
 article header {
   margin-bottom: 15px;
   padding: 5px;
-  border: 2px solid #7a201c;
-  background-color: #a32b26;
-  text-shadow: 0px 1px 1px #cc3630;
+  border: 2px solid #781a17;
+  background-color: #a3231f;
+  text-shadow: 0px 1px 1px #ce2c27;
 }
 article header a {
   color: black;
@@ -270,12 +272,12 @@ article header a {
 }
 article header a:hover {
   text-decoration: none;
-  color: #501513;
+  color: #4d110f;
 }
 article img, article object {
   display: block;
   margin-left: 15px;
   margin-top: 15px;
   margin-bottom: 10px;
-  border: 1px solid #7a201c;
+  border: 1px solid #781a17;
 }

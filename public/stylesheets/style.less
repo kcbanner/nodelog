@@ -71,17 +71,18 @@ html, body
 }
 
 @border-color: #DEA140;
-@shadow-color: rgba(0, 0, 0, 0.5);
+@shadow-color: rgba(0, 0, 0, 0.75);
 @dark-text-background: white;
-@red-background: #A32B26;
+@red-background: #A3231F;
 @dark-border: darken(@red-background, 10%);
 @link-color: #A32B26;
+@background: #DED3C3;
 
 .shadow
 { 
-  -moz-box-shadow: 0 0  15px @shadow-color;
-  -webkit-box-shadow: 0 0 15px @shadow-color;
-  box-shadow: 0 0 15px @shadow-color;
+  -moz-box-shadow: 0 0  5px @shadow-color;
+  -webkit-box-shadow: 0 0 5px @shadow-color;
+  box-shadow: 0 0 5px @shadow-color;
 }
 
 .light-text-shadow
@@ -98,6 +99,8 @@ body {
   background-color: @dark-text-background;
   font-family: 'Georgia', 'helvetica neue', serif;
   font-size: 16px;
+
+  background-color: darken(#DEC9A6, 15%);
 }
 
 h1,h2,h3
@@ -145,9 +148,11 @@ a
 
 #content
 { 
+  .shadow;
   padding-top: 80px;
   padding-left: 20px;
   padding-right: 20px;
+  background-color: @background;
 
   border: 2px solid @dark-border;
   

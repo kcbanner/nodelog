@@ -1,12 +1,15 @@
-table
-  thead
-    tr
-      th Title
-      th Date
-      th Published
-  tbody
-    article  
-      a(href: '/admin/logout') Logout
+article  
+  a(href: '/admin/logout') Logout
+  br
+  br
+
+  table
+    thead
+      tr
+        th Title
+        th Date
+        th Published
+    tbody
       - each post in posts
         tr
           td

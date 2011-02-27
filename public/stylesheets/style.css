@@ -311,6 +311,7 @@ table th {
   font-weight: bold;
 }
 table th, table td {
+  font-size: 12px;
   border: 1px solid #781a17;
   padding: 3px;
   text-align: left;

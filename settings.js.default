@@ -11,5 +11,6 @@ exports.recent_posts = 10;
 
 exports.cookie_secret = 'FILL THIS IN WITH A SECRET';
 exports.secret = 'FILL THIS IN WITH A DIFFERENT SECRET';
-exports.admin = {'username': 'USERNAME',
-                 'password': 'SHA1 OF SECRET+PASSWORD'};
+exports.admin = {'username': 'USERNAME', 'password': 'SHA1 OF SECRET+PASSWORD'};
+exports.ga_id = 'UA-EXAMPLE-GA-ID';
+exports.ga_domain = '.example.com';

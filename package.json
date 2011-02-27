@@ -1,0 +1,15 @@
+{
+  "name": "nodelog",
+  "description": "Node blogging engine",
+  "version": "0.1.0",
+  "author": "Casey Banner <kcbanner@gmail.com>",
+  "dependencies": {
+    "mongoose": ">=1.0.16",
+    "express": ">=1.0.7",
+    "jade": ">=0.6.3",
+    "less": ">=1.0.41",
+    "csv": ">=0.0.7",
+    "mongodb": ">=0.8.0",
+    "datejs": ">=0.0.2",
+  }
+}

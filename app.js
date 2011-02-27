@@ -5,6 +5,8 @@
 var sys = require('sys');
 var express = require('express');
 var mongoose = require('mongoose');
+var crypto = require('crypto');
+var MongoStore = require('connect-session-mongo');
 
 var settings = require('./settings');
 var db = mongoose.connect('mongodb://localhost/'+settings.db);
@@ -18,6 +20,13 @@ app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.bodyDecoder());
+  app.use(express.cookieDecoder());
+  app.use(express.session({
+    secret: settings.cookie_secret,
+    store: new MongoStore({
+      db: settings.db
+    })
+  }));
   app.use(express.methodOverride());
   app.use(express.compiler({ src: __dirname + '/public', enable: ['less'] }));
   app.use(express.staticProvider(__dirname + '/public'));
@@ -103,7 +112,58 @@ app.get(/^\/(\d{4})\/(\d{2})\/(\d{2})\/([a-zA-Z-0-9]+)\/?/, load_recent_posts, f
   });
 });
 
-app.get('/admin', function(req, res) {
+/* Admin */
+function require_login(req, res, next) {
+  console.log(req.session.user);
+  if(req.session.user) {
+    next();
+  } else {
+    res.redirect('/admin/login');
+  };
+};
+
+app.all('/admin/logout', function(req, res) {
+  req.session.regenerate(function(err, destroyedBoolean) {
+    res.redirect('/admin/login');
+  });
+});
+
+app.get('/admin/login', function(req, res) {
+  res.render('admin_login', {
+    locals: {
+      title: settings.title,
+      tagline: settings.tagline,
+      about: settings.about,
+      links: settings.links,
+      error: false
+    }
+  });
+});
+
+app.post('/admin/login', function(req, res) {
+  var username = req.param('username');
+  var password = req.param('password');
+  if(username !== undefined && password !== undefined) {
+    var hashed_passwd = crypto.createHash('sha1').update(settings.secret+req.param('password')).digest('hex');
+    if(username == settings.admin.username && hashed_passwd == settings.admin.password) {
+      req.session.user = true;
+      res.redirect('/admin');
+      return;
+    }
+  };
+         
+  res.render('admin_login', {
+    locals: {
+      title: settings.title,
+      tagline: settings.tagline,
+      about: settings.about,
+      links: settings.links,
+      error: true
+    }
+  });
+});
+
+app.get('/admin', require_login, function(req, res) {
   var q = models.Post.find({}).sort('date', -1);
   q.execFind(function(err, posts) {
     res.render('admin', {
@@ -114,13 +174,13 @@ app.get('/admin', function(req, res) {
         links: settings.links,
         recent_posts: [],
         posts: posts
-      },
+      }
     });
   });
 });
 
 /* Admin Editing */
-app.get('/admin/edit/:id', function(req, res, next) {
+app.get('/admin/edit/:id', require_login, function(req, res, next) {
   var q = models.Post.find({_id: req.params.id});
   q.execFind(function(err, posts) {
     var locals = {
@@ -141,7 +201,7 @@ app.get('/admin/edit/:id', function(req, res, next) {
   });
 });
 
-app.post('/admin/edit/:id', function(req, res) {
+app.post('/admin/edit/:id', require_login, function(req, res) {
   var q = models.Post.find({_id: req.params.id});
   q.execFind(function(err, posts) {
     if(posts.length == 1) {

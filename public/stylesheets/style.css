@@ -196,27 +196,6 @@ a:hover {
   text-decoration: none;
   color: #4d110f;
 }
-#sidebar_wrap {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-}
-#sidebar_wrap #sidebar {
-  -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.75);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.75);
-  padding-top: 80px;
-  padding-left: 20px;
-  padding-right: 20px;
-  background-color: #f8f7ff;
-  border: 2px solid #781a17;
-  z-index: -1;
-  position: relative;
-  width: 150px;
-  left: 415px;
-  top: 100px;
-}
 #masthead {
   position: fixed;
   top: 0px;

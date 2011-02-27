@@ -5,9 +5,11 @@ table
       th Date
       th Published
   tbody
-    - each post in posts
-      tr
-        td
-          a(href: '/admin/edit/'+post.id)= post.title
-        td= post.date.toString('MMMM, dd, yyyy')
-        td= post.published
+    article  
+      a(href: '/admin/logout') Logout
+      - each post in posts
+        tr
+          td
+            a(href: '/admin/edit/'+post.id)= post.title
+          td= post.date.toString('MMMM, dd, yyyy')
+          td= post.published

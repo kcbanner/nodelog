@@ -56,6 +56,7 @@ function context(req, res, next) {
 function locals(req, res, next) {
   var locals = req.context.locals = {};
   locals.ga_id = settings.ga_id;
+  locals.ga_domain = settings.ga_domain;
   locals.title = settings.title;
   locals.tagline = settings.tagline;
   locals.about = settings.about;

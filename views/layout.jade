@@ -7,9 +7,10 @@ html
     - if (ga_id)
       :javascript
         | var ga_id = !{JSON.stringify(ga_id)};
+        | var ga_domain = !{JSON.stringify(ga_domain)};
         | var _gaq = _gaq || [];
         | _gaq.push(['_setAccount', ga_id]);
-        | _gaq.push(['_setDomainName', '.caseybanner.ca']);
+        | _gaq.push(['_setDomainName', ga_domain]);
         | _gaq.push(['_trackPageview']);
         | (function() {
         |   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;

@@ -171,18 +171,21 @@ a:hover {
   text-align: center;
 }
 .centered {
-  width: 600px;
   margin: 0 auto;
 }
 #content {
   -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.75);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.75);
+  width: 600px;
   padding-top: 80px;
-  padding-left: 20px;
-  padding-right: 20px;
   background-color: #f8f7ff;
   border: 2px solid #781a17;
+}
+#content #bottom {
+  height: 5px;
+  border-top: 4px solid #781a17;
+  background-color: #a3231f;
 }
 .red-background {
   background-color: #a3231f;
@@ -197,14 +200,14 @@ a:hover {
   color: #4d110f;
 }
 #masthead {
+  z-index: 1;
   position: fixed;
   top: 0px;
   left: 0px;
   width: 100%;
-  padding: 10px;
   border-bottom: 4px solid #781a17;
   overflow: hidden;
-  height: 39px;
+  height: 59px;
   text-align: right;
   background-color: #a3231f;
   text-shadow: 0px 1px 1px #ce2c27;
@@ -239,6 +242,11 @@ a:hover {
   padding: 0.2em 0.2em;
   border: 1px solid #781a17;
 }
+#masthead section {
+  width: 660px;
+  padding: 10px;
+  overflow: hidden;
+}
 #masthead h1 {
   float: left;
 }
@@ -256,14 +264,22 @@ article {
   margin-bottom: 25px;
 }
 article p {
-  padding-left: 10px;
   line-height: 1.3em;
   font-size: 14px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 article header {
+  z-index: 0;
+  position: relative;
+  left: -7px;
+  width: 593px;
   margin-bottom: 15px;
-  padding: 5px;
-  border: 2px solid #781a17;
+  padding: 5px 10px;
+  border-top: 2px solid #781a17;
+  border-bottom: 2px solid #781a17;
+  border-left: 1px solid #781a17;
+  border-right: 1px solid #781a17;
   background-color: #a3231f;
   text-shadow: 0px 1px 1px #ce2c27;
 }

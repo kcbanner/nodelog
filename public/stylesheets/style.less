@@ -143,27 +143,23 @@ a
 
 .centered
 { 
-  width: 600px;
   margin: 0 auto;
 }
 
 #content
 { 
   .shadow;
+  width: 600px;
   padding-top: 80px;
-  padding-left: 20px;
-  padding-right: 20px;
   background-color: @background;
   border: 2px solid @dark-border;
   
-  section
+  #bottom
   { 
+    height: 5px;
+    border-top: 4px solid @dark-border;
+    background-color: @red-background;
   }
-}
-
-#nav
-{ 
-
 }
 
 .red-background
@@ -185,14 +181,14 @@ a
 
 #masthead
 { 
+  z-index: 1;
   position: fixed;
   top: 0px;
   left: 0px;
   width: 100%;
-  padding: 10px;
   border-bottom: 4px solid @dark-border;
   overflow: hidden;
-  height: 39px;
+  height: 59px;
   text-align: right;
   .red-background;
 
@@ -224,6 +220,13 @@ a
     }
   }
 
+  section
+  { 
+    width: 660px;
+    padding: 10px;
+    overflow: hidden;
+  }
+
   h1
   { 
     float: left;
@@ -250,16 +253,24 @@ article
  
   p
   {
-    padding-left: 10px;
     line-height: 1.3em;
     font-size: 14px;
+    padding-left: 20px;
+    padding-right: 20px; 
   }
 
   header
   { 
+    z-index: 0;
+    position: relative;
+    left: -7px;
+    width: 593px;
     margin-bottom: 15px;
-    padding: 5px;
-    border: 2px solid @dark-border;
+    padding: 5px 10px;
+    border-top: 2px solid @dark-border;
+    border-bottom: 2px solid @dark-border;
+    border-left: 1px solid @dark-border;
+    border-right: 1px solid @dark-border;
     .red-background;
   }
 

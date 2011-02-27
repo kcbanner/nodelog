@@ -214,6 +214,19 @@ app.post('/admin/edit/:id', require_login, function(req, res) {
   });
 });
 
+app.get('/admin/delete/:id', require_login, function(req, res) {
+  var q = models.Post.find({_id: req.params.id});
+  q.execFind(function(err, posts) {
+    if(posts.length == 1) {
+      posts[0].remove(function(err) {
+        res.redirect('/admin');
+      });
+    } else {
+      return next(new NotFound);
+    }
+  });
+});
+
 // 404
 app.all('*', function(req, res) {
   throw new NotFound;

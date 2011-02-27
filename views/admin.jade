@@ -9,10 +9,17 @@ article
         th Title
         th Date
         th Published
+        th 
     tbody
       - each post in posts
         tr
           td
             a(href: '/admin/edit/'+post.id)= post.title
           td= post.date.toString('MMMM, dd, yyyy')
-          td= post.published
+          td
+            - if(post.published)
+              | Yes
+            - else 
+              | No
+          td
+            a(href: '/admin/delete/'+post.id) Delete

@@ -6,6 +6,10 @@
         span.date #{post.date.toString('MMMM dS, yyyy')}
     p!= post.content
     footer
+
 - if (page != 0)
-  a(href: '/page/'+(page-1)) Newer posts
+  a(href: '/page/'+(page-1)) Newer posts 
+  | &nbsp; &nbsp; &nbsp;
 a(href: '/page/'+(page+1)) Older posts
+br
+br

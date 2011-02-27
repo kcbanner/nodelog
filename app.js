@@ -33,12 +33,37 @@ app.configure(function(){
 });
 
 app.configure('development', function(){
+  // Disable Google Analytics locally
+  settings.ga_id = false;
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
 });
 
 app.configure('production', function(){
   app.use(express.errorHandler());
 });
+
+// Request context
+function context(req, res, next) {
+  req.context = {};
+  res._render = res.render;
+  res.render = function(template, options) {
+    for (var prop in options) req.context[prop] = options[prop];
+    res._render(template, req.context);
+  };
+  next();
+}
+
+function locals(req, res, next) {
+  var locals = req.context.locals = {};
+  locals.ga_id = settings.ga_id;
+  locals.title = settings.title;
+  locals.tagline = settings.tagline;
+  locals.about = settings.about;
+  locals.links = settings.links;
+  next();
+}
+
+var stack = [context, locals];
 
 // Error handling
 function NotFound(msg){
@@ -49,24 +74,16 @@ function NotFound(msg){
 
 sys.inherits(NotFound, Error);
 
-app.error(function(err, req, res, next){
+app.error(function(err, req, res, next) {
   if (err instanceof NotFound) {
-    res.render('404', {
-      status: 404,
-      locals: {
-        title: settings.title,
-        tagline: settings.tagline,
-        about: settings.about,
-        links: settings.links
-      }
-    });
+    res.render('404', { status: 404});
   } else {
     next(err);
   }
 });
 
 // Routes
-app.get(/^\/(?:page\/(\d+))?$/, function(req, res) {
+app.get(/^\/(?:page\/(\d+))?$/, stack, function(req, res) {
   var q = models.Post.find({published: true}).sort('date', -1).limit(settings.front_page_posts);
   var page = 0;
   if (req.params[0] !== undefined) {
@@ -74,36 +91,22 @@ app.get(/^\/(?:page\/(\d+))?$/, function(req, res) {
     q.skip(settings.front_page_posts*page);
   }
 
+  req.context.locals.page = page;
   q.execFind(function(err, posts) {
-    res.render('index', {
-      locals: {
-        title: settings.title,
-        tagline: settings.tagline,
-        about: settings.about,
-        links: settings.links,
-        page: page,
-        posts: posts
-      }
-    });
+    req.context.locals.posts = posts;
+    res.render('index');
   });
 });
 
-app.get(/^\/(\d{4})\/(\d{2})\/(\d{2})\/([a-zA-Z-0-9]+)\/?/, function(req, res, next){
+app.get(/^\/(\d{4})\/(\d{2})\/(\d{2})\/([a-zA-Z-0-9]+)\/?/, stack, function(req, res, next){
   var q = models.Post.findOne({published: true, permalink: req.params[3]});
   q.execFind(function(err, posts) {
     if(posts.length == 0) {
       // 404
       return next(new NotFound);
     } else {
-      res.render('post', {
-        locals: {
-          title: settings.title,
-          tagline: settings.tagline,
-          about: settings.about,
-          links: settings.links,
-          post: posts[0]
-        }
-      });
+      req.context.locals.post = posts[0];
+      res.render('post');
     }
   });
 });
@@ -123,19 +126,12 @@ app.all('/admin/logout', function(req, res) {
   });
 });
 
-app.get('/admin/login', function(req, res) {
-  res.render('admin_login', {
-    locals: {
-      title: settings.title,
-      tagline: settings.tagline,
-      about: settings.about,
-      links: settings.links,
-      error: false
-    }
-  });
+app.get('/admin/login', stack, function(req, res) {
+  req.context.locals.error = false;
+  res.render('admin_login');
 });
 
-app.post('/admin/login', function(req, res) {
+app.post('/admin/login', stack, function(req, res) {
   var username = req.param('username');
   var password = req.param('password');
   if(username !== undefined && password !== undefined) {
@@ -146,57 +142,34 @@ app.post('/admin/login', function(req, res) {
       return;
     }
   };
-         
-  res.render('admin_login', {
-    locals: {
-      title: settings.title,
-      tagline: settings.tagline,
-      about: settings.about,
-      links: settings.links,
-      error: true
-    }
-  });
+
+  req.context.locals.error = true;
+  res.render('admin_login');
 });
 
-app.get('/admin', require_login, function(req, res) {
+app.get('/admin', stack, require_login, function(req, res) {
   var q = models.Post.find({}).sort('date', -1);
   q.execFind(function(err, posts) {
-    res.render('admin', {
-      locals: {
-        title: settings.title,
-        tagline: settings.tagline,
-        about: settings.about,
-        links: settings.links,
-        recent_posts: [],
-        posts: posts
-      }
-    });
+    req.context.locals.posts = posts;
+    res.render('admin');
   });
 });
 
 /* Admin Editing */
-app.get('/admin/edit/:id', require_login, function(req, res, next) {
+app.get('/admin/edit/:id', stack, require_login, function(req, res, next) {
   var q = models.Post.find({_id: req.params.id});
   q.execFind(function(err, posts) {
-    var locals = {
-      title: settings.title,
-      tagline: settings.tagline,
-      about: settings.about,
-      links: settings.links,
-      recent_posts: []
-    };
-    
     if(posts) {
-      locals['post'] = posts[0];
+      req.context.locals.post = posts[0];
     } else {
       return next(new NotFound);
     }
 
-    return res.render('admin_edit', { locals: locals });
+    return res.render('admin_edit');
   });
 });
 
-app.post('/admin/edit/:id', require_login, function(req, res) {
+app.post('/admin/edit/:id', stack, require_login, function(req, res) {
   var q = models.Post.find({_id: req.params.id});
   q.execFind(function(err, posts) {
     if(posts.length == 1) {
@@ -214,7 +187,7 @@ app.post('/admin/edit/:id', require_login, function(req, res) {
   });
 });
 
-app.get('/admin/delete/:id', require_login, function(req, res) {
+app.get('/admin/delete/:id', stack, require_login, function(req, res) {
   var q = models.Post.find({_id: req.params.id});
   q.execFind(function(err, posts) {
     if(posts.length == 1) {
@@ -228,7 +201,7 @@ app.get('/admin/delete/:id', require_login, function(req, res) {
 });
 
 // 404
-app.all('*', function(req, res) {
+app.all('*', stack, function(req, res) {
   throw new NotFound;
 });
 

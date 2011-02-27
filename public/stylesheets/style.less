@@ -171,10 +171,11 @@ a
   { 
     color: black;
     -webkit-transition: color 0.1s;
+
     &:hover
     {
       text-decoration: none; 
-      color: darken(@dark-border, 10%);
+      color: white;
     }
   }
 }
@@ -272,6 +273,12 @@ article
     border-left: 1px solid @dark-border;
     border-right: 1px solid @dark-border;
     .red-background;
+    -webkit-transition: border-left 0.2s ease-in-out;
+
+    &:hover
+    { 
+      border-left: 10px solid @dark-border;
+    }
   }
 
   img, object

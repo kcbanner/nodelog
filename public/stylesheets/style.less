@@ -278,22 +278,7 @@ article
     border-left: 1px solid @dark-border;
     border-right: 1px solid @dark-border;
     .red-background;
-    -webkit-transition: border-left 0.2s ease-in-out;
-
-    &:after
-    { 
-      content:"";
-      border-top: 1px dashed lighten(@dark-border, 20%);
-      border-bottom: 1px dashed lighten(@dark-border, 20%);
-      border-left: 1px solid lighten(@dark-border, 15%);
-      border-right: 1px solid lighten(@dark-border, 15%);
-
-      top: 0px;
-      left: 0px;
-      height: 50px;
-      width: 612px;
-      position: absolute;
-    } 
+    -webkit-transition: all 0.1s ease-in-out;
 
     &:hover
     { 

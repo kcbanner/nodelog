@@ -146,7 +146,6 @@ app.post('/admin/edit/:id', function(req, res) {
   q.execFind(function(err, posts) {
     if(posts.length == 1) {
       var post = posts[0];
-      console.log(req.params);
       post.title = req.param('title');
       post.permalink = req.param('permalink');
       post.content = req.param('content');

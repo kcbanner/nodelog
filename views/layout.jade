@@ -6,6 +6,10 @@ html
     link(rel: 'stylesheet', href: '/stylesheets/style.css')
   body
     section
+      div#sidebar_wrap
+        section#sidebar.centered
+          header Recent Posts
+
       header#masthead
         div.centered
           a(href: '/')
@@ -15,6 +19,5 @@ html
             - each link in links
               li
                 a(href: link[1])= link[0]
-      section#content.centered!= body
 
-      section#nav
+      section#content.centered!= body

@@ -73,7 +73,7 @@ app.get(/^\/(?:page\/(\d+))?$/, function(req, res) {
     page = new Number(req.params[0]);
     q.skip(settings.front_page_posts*page);
   }
-  
+
   q.execFind(function(err, posts) {
     res.render('index', {
       locals: {

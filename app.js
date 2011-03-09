@@ -6,7 +6,7 @@ var sys = require('sys');
 var express = require('express');
 var mongoose = require('mongoose');
 var crypto = require('crypto');
-var MongoStore = require('connect-session-mongo');
+var MongoStore = require('connect-mongo');
 
 var settings = require('./settings');
 var db = mongoose.connect('mongodb://localhost/'+settings.db);
@@ -19,8 +19,8 @@ var app = module.exports = express.createServer();
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
-  app.use(express.bodyDecoder());
-  app.use(express.cookieDecoder());
+  app.use(express.bodyParser());
+  app.use(express.cookieParser());
   app.use(express.session({
     secret: settings.cookie_secret,
     store: new MongoStore({
@@ -29,7 +29,7 @@ app.configure(function(){
   }));
   app.use(express.methodOverride());
   app.use(express.compiler({ src: __dirname + '/public', enable: ['less'] }));
-  app.use(express.staticProvider(__dirname + '/public'));
+  app.use(express.static(__dirname + '/public'));
 });
 
 app.configure('development', function(){
@@ -42,29 +42,17 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
-// Request context
-function context(req, res, next) {
-  req.context = {};
-  res._render = res.render;
-  res.render = function(template, options) {
-    for (var prop in options) req.context[prop] = options[prop];
-    res._render(template, req.context);
-  };
-  next();
-}
-
 function locals(req, res, next) {
-  var locals = req.context.locals = {};
-  locals.ga_id = settings.ga_id;
-  locals.ga_domain = settings.ga_domain;
-  locals.title = settings.title;
-  locals.tagline = settings.tagline;
-  locals.about = settings.about;
-  locals.links = settings.links;
+  res.local('ga_id', settings.ga_id);
+  res.local('ga_domain', settings.ga_domain);
+  res.local('title', settings.title);
+  res.local('tagline', settings.tagline);
+  res.local('about', settings.about);
+  res.local('links', settings.links);  
   next();
 }
 
-var stack = [context, locals];
+var stack = [locals];
 
 // Error handling
 function NotFound(msg){
@@ -92,9 +80,9 @@ app.get(/^\/(?:page\/(\d+))?$/, stack, function(req, res) {
     q.skip(settings.front_page_posts*page);
   }
 
-  req.context.locals.page = page;
+  res.local('page', page);
   q.execFind(function(err, posts) {
-    req.context.locals.posts = posts;
+    res.local('posts', posts);
     res.render('index');
   });
 });
@@ -106,7 +94,7 @@ app.get(/^\/(\d{4})\/(\d{2})\/(\d{2})\/([a-zA-Z-0-9]+)\/?/, stack, function(req,
       // 404
       return next(new NotFound);
     } else {
-      req.context.locals.post = posts[0];
+      res.local('post', posts[0]);
       res.render('post');
     }
   });
@@ -128,7 +116,7 @@ app.all('/admin/logout', function(req, res) {
 });
 
 app.get('/admin/login', stack, function(req, res) {
-  req.context.locals.error = false;
+  res.local('error', false);
   res.render('admin_login');
 });
 
@@ -144,14 +132,14 @@ app.post('/admin/login', stack, function(req, res) {
     }
   };
 
-  req.context.locals.error = true;
+  res.local('error', true);
   res.render('admin_login');
 });
 
 app.get('/admin', stack, require_login, function(req, res) {
   var q = models.Post.find({}).sort('date', -1);
   q.execFind(function(err, posts) {
-    req.context.locals.posts = posts;
+    res.local('posts', posts);
     res.render('admin');
   });
 });
@@ -161,7 +149,7 @@ app.get('/admin/edit/:id', stack, require_login, function(req, res, next) {
   var q = models.Post.find({_id: req.params.id});
   q.execFind(function(err, posts) {
     if(posts) {
-      req.context.locals.post = posts[0];
+      res.local('post', posts[0]);
     } else {
       return next(new NotFound);
     }

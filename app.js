@@ -9,9 +9,9 @@ var crypto = require('crypto');
 var MongoStore = require('connect-mongo');
 
 var settings = require('./settings');
+var util = require('./util');
 var db = mongoose.connect('mongodb://localhost/'+settings.db);
 var models = require('./models');
-var date = require('datejs');
 
 var app = module.exports = express.createServer();
 
@@ -145,6 +145,30 @@ app.get('/admin', stack, require_login, function(req, res) {
 });
 
 /* Admin Editing */
+app.get('/admin/new', stack, require_login, function(req, res, next) {
+  res.local('post', {});
+  return res.render('admin_edit');
+});
+
+app.post('/admin/new', stack, require_login, function(req, res, next) {
+  var post = new models.Post();
+  post.author = settings.admin.username;
+  post.title = req.param('title');
+  post.permalink = req.param('permalink');
+  post.content = req.param('content');
+  post.date = new Date();
+  post.published = true;
+
+  if (post.title && post.permalink && post.content) {
+    post.save(function(err) {
+      res.redirect('/admin/edit/'+post.id);
+    });
+  } else {
+    res.local('post', post);
+    return res.render('admin_edit');
+  }
+});
+
 app.get('/admin/edit/:id', stack, require_login, function(req, res, next) {
   var q = models.Post.find({_id: req.params.id});
   q.execFind(function(err, posts) {

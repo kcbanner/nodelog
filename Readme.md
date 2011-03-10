@@ -4,8 +4,12 @@
 
 ## Setup
 
-  Make sure all the dependencies are installed, see package.json for exact versions.
- 
+  Make sure all the dependencies are installed, see package.json for exact versions. `npm link` should handle this.
+
+    $ npm link
+
+  Copy the default settings:
+
     $ cp settings.js.default settings.js
 
   Edit appropriate fields in settings.js.

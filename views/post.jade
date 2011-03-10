@@ -1,6 +1,6 @@
 article
   header
     h2= post['title']
-    span.date #{post.date.toString('MMMM dS, yyyy')}
+    span.date #{post.date.format('MMMM dS, yyyy')}
   p!= post.content
   footer

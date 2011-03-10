@@ -5,11 +5,16 @@
 ## Setup
 
   Make sure all the dependencies are installed, see package.json for exact versions.
+ 
+    $ cp settings.js.default settings.js
 
-  Copy `settings.js.default` to `settings.js` and edit appropriate fields.
+  Edit appropriate fields in settings.js.
 
-    node app.js
+    $ node app.js
 
 ## Development
 
-  Installed `node-dev` via npm. Run `./dev.sh` to start the server in the development environment. `node-dev` simply restarts the server when it detects code changes.
+  `dev.sh` simply starts the server using `node-dev` in the development environment. `node-dev` automatically restarts the server when it detects code changes.
+
+    $ npm install node-dev
+    $ ./dev.sh

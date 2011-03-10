@@ -1,14 +1,18 @@
 {
   "name": "nodelog",
-  "description": "Node blogging engine",
-  "version": "0.1.0",
+  "description": "Blogging software based on Node.js, Express, and MongoDB.",
+  "version": "0.2.0",
+  "repository": {
+    "type": "git",
+    "url" : "git://github.com/kcbanner/nodelog.git"
+  },
   "author": "Casey Banner <kcbanner@gmail.com>",
   "dependencies": {
-    "mongoose": ">=1.0.16",
+    "mongoose": ">=1.1.4",
     "express": ">=2.0.0beta",
-    "jade": ">=0.6.3",
+    "jade": ">=0.8.5",
     "less": ">=1.0.41",
-    "csv": ">=0.0.7",
-    "mongodb": ">=0.8.0",a
-  }
+    "csv": ">=0.0.7"
+  },
+  "engines": { "node": ">=0.4.2" }
 }

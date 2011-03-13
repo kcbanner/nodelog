@@ -251,20 +251,26 @@ article
   text-align: left;
   padding-bottom: 20px;
   margin-bottom: 25px;
+  padding-left: 20px;
+  padding-right: 20px;
  
   p
   {
     line-height: 1.3em;
     font-size: 14px;
-    padding-left: 20px;
-    padding-right: 20px; 
+  }
+
+  pre.sh_sourceCode
+  { 
+    padding: 10px;
+    border: 1px dashed @dark-border;
   }
 
   header
   { 
     z-index: 0;
     position: relative;
-    left: -7px;
+    left: -27px;
     width: 593px;
     margin-bottom: 15px;
     padding: 5px 10px;
@@ -284,7 +290,6 @@ article
   img, object
   { 
     display: block;
-    margin-left: 15px;
     margin-top: 15px;
     margin-bottom: 10px;
     border: 1px solid @dark-border;
@@ -312,10 +317,3 @@ table
 
 }
 
-pre.sh_sourceCode
-{ 
-  margin-left: 20px;
-  margin-right: 20px;
-  padding: 10px;
-  border: 1px dashed @dark-border;
-}

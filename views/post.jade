@@ -3,4 +3,10 @@ article
     h2= post['title']
     span.date #{post.date.format('MMMM dS, yyyy')}
   p!= post.content
+  script
+    var idcomments_acct = 'a545e1ebe2dd42c1003f914e02081dfd';
+    var idcomments_post_id;
+    var idcomments_post_url;
+  span(id: "IDCommentsPostTitle", style: "display: none")
+  script(type: "text/javascript", src="http://www.intensedebate.com/js/genericCommentWrapperV2.js")
   footer

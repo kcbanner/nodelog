@@ -3,6 +3,8 @@ html
   head
     title= title
     script(type: 'text/javascript', src: '/javascripts/tiny_mce/tiny_mce.js')
+    script(type: 'text/javascript', src: '/javascripts/sh_main.min.js')
+    link(rel: 'stylesheet', href: '/stylesheets/sh_emacs.min.css')
     link(rel: 'stylesheet', href: '/stylesheets/style.css')
     - if (ga_id)
       script(type: "text/javascript")
@@ -17,7 +19,7 @@ html
           ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
-  body
+  body(onload: "sh_highlightDocument('/javascripts/lang/', '.min.js');")
     section
       header#masthead
         section.centered

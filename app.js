@@ -27,15 +27,16 @@ app.configure(function(){
       db: settings.db
     })
   }));
+  
   app.use(express.methodOverride());
   app.use(express.compiler({ src: __dirname + '/public', enable: ['less'] }));
-  app.use(express.static(__dirname + '/public'));
 });
 
 app.configure('development', function(){
   // Disable Google Analytics locally
   settings.ga_id = false;
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
+  app.use(express.static(__dirname + '/public'));
 });
 
 app.configure('production', function(){

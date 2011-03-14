@@ -6,6 +6,9 @@ html
     script(type: 'text/javascript', src: '/javascripts/sh_main.min.js')
     link(rel: 'stylesheet', href: '/stylesheets/sh_emacs.min.css')
     link(rel: 'stylesheet', href: '/stylesheets/style.css')
+
+    - if (google_site_verification)
+      meta(name: "google-site-verification", content=google_site_verification)
     - if (ga_id)
       script(type: "text/javascript")
         var ga_id = !{JSON.stringify(ga_id)};

@@ -14,3 +14,6 @@ exports.secret = 'FILL THIS IN WITH A DIFFERENT SECRET';
 exports.admin = {'username': 'USERNAME', 'password': 'SHA1 OF SECRET+PASSWORD'};
 exports.ga_id = 'UA-EXAMPLE-GA-ID';
 exports.ga_domain = '.example.com';
+
+// For Google Webmaster Central verification. This code is the "content" field in the meta tag
+exports.google_site_verification = 'META TAG "CONTENT" FIELD'

@@ -49,7 +49,14 @@ function locals(req, res, next) {
   res.local('title', settings.title);
   res.local('tagline', settings.tagline);
   res.local('about', settings.about);
-  res.local('links', settings.links);  
+  res.local('links', settings.links);
+  
+  if (settings.google_site_verification) {
+    res.local('google_site_verification', settings.google_site_verification);
+  } else {
+    res.local('google_site_verification', false);
+  }
+  
   next();
 }
 

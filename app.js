@@ -87,6 +87,7 @@ app.get('/feed.rss', stack, function(req, res) {
   q.execFind(function(err, posts) {
     var post = posts[0];
     res.local('posts', posts);
+    res.contentType('application/xml');
     res.render('feed', {layout: false});
   });
 });

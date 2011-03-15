@@ -52,6 +52,12 @@ function locals(req, res, next) {
   res.local('about', settings.about);
   res.local('links', settings.links);
   res.local('url', settings.url);
+
+  if (settings.external_feed) {
+    res.local('feed_url', settings.external_feed);
+  } else {
+    res.local('feed_url', '/feed.rss');
+  }
   
   if (settings.google_site_verification) {
     res.local('google_site_verification', settings.google_site_verification);

@@ -47,6 +47,7 @@ function locals(req, res, next) {
   res.local('ga_id', settings.ga_id);
   res.local('ga_domain', settings.ga_domain);
   res.local('title', settings.title);
+  res.local('blog_title', settings.title);
   res.local('tagline', settings.tagline);
   res.local('about', settings.about);
   res.local('links', settings.links);

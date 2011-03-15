@@ -13,4 +13,4 @@ rss(version: "2.0")
         guid(isPermaLink: "false")= post.permalink
         pubDate= post.date.format('ddd, dd MMM yyyy HH:mm:ss Z')
         link= 'http://'+url+'/'+post.date.format('yyyy/MM/dd/')+post.permalink
-        description!= post.content
+        description= post.content

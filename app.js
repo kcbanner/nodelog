@@ -102,6 +102,7 @@ app.get(/^\/(\d{4})\/(\d{2})\/(\d{2})\/([a-zA-Z-0-9]+)\/?/, stack, function(req,
       // 404
       return next(new NotFound);
     } else {
+      res.local('title', res.local('title')+' -  '+posts[0].title);
       res.local('post', posts[0]);
       res.render('post');
     }

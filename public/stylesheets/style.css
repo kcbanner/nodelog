@@ -261,7 +261,6 @@ article:nth-last-child(1) {
 article {
   text-align: left;
   padding-bottom: 20px;
-  margin-bottom: 25px;
   padding-left: 20px;
   padding-right: 20px;
 }
@@ -274,6 +273,7 @@ article p {
 article pre.sh_sourceCode {
   padding: 10px;
   border: 1px dashed #781a17;
+  font-size: 14px;
 }
 article header {
   z-index: 0;

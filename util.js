@@ -77,16 +77,29 @@ Date.CultureInfo = {
   abbreviatedMonthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 };
 
+Date.prototype.getUTCOffset = function() {
+  var n = this.getTimezoneOffset() * -10 / 6, r;
+  if (n < 0) { 
+    r = (n - 10000).toString(); 
+    return r.charAt(0) + r.substr(2); 
+  } else { 
+    r = (n + 10000).toString();  
+    return "+" + r.substr(1); 
+  }
+};
+
 Date.prototype.format = function(format_str) {
   var x = this;
   return format_str.replace(
-      /(\\)?(dd?d?d?|MM?M?M?|yy?y?y?|mm?|ss?|tt?|S)/g, 
+      /(\\)?(dd?d?d?|HH|MM?M?M?|yy?y?y?|mm?|ss?|tt?|S|Z)/g, 
     function (m) {
       if (m.charAt(0) === "\\") {
         return m.replace("\\", "");
       }
       x.h = x.getHours;
       switch (m) {
+       case "HH":
+        return p(x.getHours());
        case "mm":
         return p(x.getMinutes());
        case "m":
@@ -100,9 +113,9 @@ Date.prototype.format = function(format_str) {
        case "yy":
         return p(x.getFullYear());
        case "dddd":
-        return $C.dayNames[x.getDay()];
+        return Date.CultureInfo.dayNames[x.getDay()];
        case "ddd":
-        return $C.abbreviatedDayNames[x.getDay()];
+        return Date.CultureInfo.abbreviatedDayNames[x.getDay()];
        case "dd":
         return p(x.getDate());
        case "d":
@@ -117,6 +130,8 @@ Date.prototype.format = function(format_str) {
         return x.getMonth() + 1;
        case "S":
         return ord(x.getDate());
+       case "Z":
+        return x.getUTCOffset();
       default: 
         return m;
       }

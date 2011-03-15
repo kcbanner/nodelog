@@ -51,6 +51,7 @@ function locals(req, res, next) {
   res.local('tagline', settings.tagline);
   res.local('about', settings.about);
   res.local('links', settings.links);
+  res.local('url', settings.url);
   
   if (settings.google_site_verification) {
     res.local('google_site_verification', settings.google_site_verification);
@@ -81,6 +82,15 @@ app.error(function(err, req, res, next) {
 });
 
 // Routes
+app.get('/feed.rss', stack, function(req, res) {
+  var q = models.Post.find({published: true}).sort('date', -1).limit(20);
+  q.execFind(function(err, posts) {
+    var post = posts[0];
+    res.local('posts', posts);
+    res.render('feed', {layout: false});
+  });
+});
+
 app.get(/^\/(?:page\/(\d+))?$/, stack, function(req, res) {
   var q = models.Post.find({published: true}).sort('date', -1).limit(settings.front_page_posts);
   var page = 0;

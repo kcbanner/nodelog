@@ -1,0 +1,16 @@
+!!! xml
+rss(version: "2.0")
+channel
+  title= title
+  description= tagline
+  link= url
+  lastBuildDate #{posts[0].date.format('ddd, dd MMM yyyy HH:mm:ss Z')}
+  generator Nodelog
+
+  - each post in posts
+    item
+      title= post.title
+      guid= post.permalink
+      pubDate= post.date.format('ddd, dd MMM yyyy HH:mm:ss Z')
+      link= 'http://'+url+'/'+post.date.format('yyyy/MM/dd/')+post.permalink
+      description= post.content

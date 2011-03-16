@@ -21,3 +21,6 @@ exports.ga_domain = '.example.com';
 
 // For Google Webmaster Central verification. This code is the "content" field in the meta tag
 exports.google_site_verification = 'META TAG "CONTENT" FIELD'
+
+// For intensedebate comments
+exports.intensedebate_acct = 'INTENSEDEBATE IDCOMMENTS_ACCT';

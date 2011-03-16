@@ -53,6 +53,12 @@ function locals(req, res, next) {
   res.local('links', settings.links);
   res.local('url', settings.url);
 
+  if (settings.intensedebate_acct) {
+    res.local('intensedebate_acct', settings.intensedebate_acct);
+  } else {
+    res.local('intensedebate_acct', false);
+  }
+
   if (settings.external_feed) {
     res.local('feed_url', settings.external_feed);
   } else {

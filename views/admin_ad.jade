@@ -1,0 +1,14 @@
+article
+  a(href: '/admin') Back
+  form(method: "POST")
+    label Title:
+    input(name: 'title', size: 30, value: ad.title)
+    br
+
+    label Code:
+    br
+    textarea(name: 'code', cols:60, rows: 30)= ad.code
+
+    br
+    input(name: 'id', type: 'hidden', value: ad._id)
+    input(type: 'submit', value: 'Save')

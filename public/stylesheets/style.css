@@ -301,21 +301,25 @@ article header a:hover {
 article header:hover {
   border-left: 10px solid #781a17;
 }
-article img, article object {
+article > img, article object {
   display: block;
   margin-top: 15px;
   margin-bottom: 10px;
   border: 1px solid #781a17;
 }
+article div.ad table {
+  margin-left: auto;
+  margin-right: auto;
+}
 /* Admin */
-table {
+table.admin {
   border: 1px solid #781a17;
   width: 100%;
 }
-table th {
+table.admin th {
   font-weight: bold;
 }
-table th, table td {
+table.admin th, table.admin td {
   font-size: 12px;
   border: 1px solid #781a17;
   padding: 3px;

@@ -3,6 +3,7 @@ article
     h2= post['title']
     span.date #{post.date.format('MMMM dS, yyyy')}
   p!= post.content
+  div.ad!= ad.code
   - if (intensedebate_acct)
     script
       var idcomments_acct = !{JSON.stringify(intensedebate_acct)};

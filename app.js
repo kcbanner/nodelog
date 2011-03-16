@@ -74,6 +74,14 @@ function locals(req, res, next) {
   next();
 }
 
+function get_ad(req, res, next) {
+  var q = models.Ad.find({active: true}).limit(1);
+  q.execFind(function(err, ads) {
+    res.local('ad', ads[0]);
+    next();
+  });
+}
+
 var stack = [locals];
 
 // Error handling
@@ -104,7 +112,7 @@ app.get('/feed.rss', stack, function(req, res) {
   });
 });
 
-app.get(/^\/(?:page\/(\d+))?$/, stack, function(req, res) {
+app.get(/^\/(?:page\/(\d+))?$/, stack, get_ad, function(req, res) {
   var q = models.Post.find({published: true}).sort('date', -1).limit(settings.front_page_posts);
   var page = 0;
   if (req.params[0] !== undefined) {
@@ -114,12 +122,13 @@ app.get(/^\/(?:page\/(\d+))?$/, stack, function(req, res) {
 
   res.local('page', page);
   q.execFind(function(err, posts) {
+    res.local('ad', req.ad);
     res.local('posts', posts);
     res.render('index');
   });
 });
 
-app.get(/^\/(\d{4})\/(\d{2})\/(\d{2})\/([a-zA-Z-0-9]+)\/?/, stack, function(req, res, next){
+app.get(/^\/(\d{4})\/(\d{2})\/(\d{2})\/([a-zA-Z-0-9]+)\/?/, stack, get_ad, function(req, res, next){
   var q = models.Post.findOne({published: true, permalink: req.params[3]});
   q.execFind(function(err, posts) {
     if(posts.length == 0) {
@@ -169,21 +178,58 @@ app.post('/admin/login', stack, function(req, res) {
   res.render('admin_login');
 });
 
+/* Admin Editing */
+
 app.get('/admin', stack, require_login, function(req, res) {
+  res.render('admin');
+});
+
+app.get('/admin/ad', stack, get_ad, require_login, function(req, res) {
+  res.render('admin_ad');
+});
+
+app.post('/admin/ad', stack, require_login, function(req, res) {
+  var ad;
+
+  var save_ad = function() {
+    ad.title = req.param('title');
+    ad.code = req.param('code');
+    ad.save(function(err) {
+      res.redirect('/admin/ad');    
+    });    
+  };
+
+  if (req.param('id')) {
+    var q = models.Ad.find({_id: req.param('id')}).limit(1);
+    q.execFind(function(err, ads) {
+      if (ads.length == 1) {
+        ad = ads[0];
+        save_ad();
+      } else {
+        throw new Error('Ad not found.');
+      }
+    });
+  } else {
+    ad = new models.Ad();
+    ad.active = true;
+    save_ad();
+  }
+});
+
+app.get('/admin/post', stack, require_login, function(req, res) {
   var q = models.Post.find({}).sort('date', -1);
   q.execFind(function(err, posts) {
     res.local('posts', posts);
-    res.render('admin');
+    res.render('admin_posts');
   });
 });
 
-/* Admin Editing */
-app.get('/admin/new', stack, require_login, function(req, res, next) {
+app.get('/admin/post/new', stack, require_login, function(req, res, next) {
   res.local('post', {});
   return res.render('admin_edit');
 });
 
-app.post('/admin/new', stack, require_login, function(req, res, next) {
+app.post('/admin/post/new', stack, require_login, function(req, res, next) {
   var post = new models.Post();
   post.author = settings.admin.username;
   post.title = req.param('title');
@@ -194,7 +240,7 @@ app.post('/admin/new', stack, require_login, function(req, res, next) {
 
   if (post.title && post.permalink && post.content) {
     post.save(function(err) {
-      res.redirect('/admin/edit/'+post.id);
+      res.redirect('/admin/post/edit/'+post.id);
     });
   } else {
     res.local('post', post);
@@ -202,7 +248,7 @@ app.post('/admin/new', stack, require_login, function(req, res, next) {
   }
 });
 
-app.get('/admin/edit/:id', stack, require_login, function(req, res, next) {
+app.get('/admin/post/edit/:id', stack, require_login, function(req, res, next) {
   var q = models.Post.find({_id: req.params.id});
   q.execFind(function(err, posts) {
     if(posts) {
@@ -215,7 +261,7 @@ app.get('/admin/edit/:id', stack, require_login, function(req, res, next) {
   });
 });
 
-app.post('/admin/edit/:id', stack, require_login, function(req, res) {
+app.post('/admin/post/edit/:id', stack, require_login, function(req, res) {
   var q = models.Post.find({_id: req.params.id});
   q.execFind(function(err, posts) {
     if(posts.length == 1) {
@@ -225,7 +271,7 @@ app.post('/admin/edit/:id', stack, require_login, function(req, res) {
       post.content = req.param('content');
       
       post.save(function(err) {
-        res.redirect('/admin/edit/'+post.id);
+        res.redirect('/admin/post/edit/'+post.id);
       });
     } else {
       return next(new NotFound);
@@ -233,7 +279,7 @@ app.post('/admin/edit/:id', stack, require_login, function(req, res) {
   });
 });
 
-app.get('/admin/delete/:id', stack, require_login, function(req, res) {
+app.get('/admin/post/delete/:id', stack, require_login, function(req, res) {
   var q = models.Post.find({_id: req.params.id});
   q.execFind(function(err, posts) {
     if(posts.length == 1) {

@@ -1,26 +1,3 @@
-article  
-  a(href: '/admin/logout') Logout
-  a(href: '/admin/new') New
-  br
-  br
-
-  table
-    thead
-      tr
-        th Title
-        th Date
-        th Published
-        th 
-    tbody
-      - each post in posts
-        tr
-          td
-            a(href: '/admin/edit/'+post.id)= post.title
-          td= post.date.format('MMMM, dd, yyyy')
-          td
-            - if(post.published)
-              | Yes
-            - else 
-              | No
-          td
-            a(href: '/admin/delete/'+post.id) Delete
+a(href: "/admin/post") Posts
+a(href: "/admin/ad") Ads
+a(href: '/admin/logout') Logout

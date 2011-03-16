@@ -185,6 +185,7 @@ app.get('/admin', stack, require_login, function(req, res) {
 });
 
 app.get('/admin/ad', stack, get_ad, require_login, function(req, res) {
+  res.local('ad', res.local('ad') || {});
   res.render('admin_ad');
 });
 

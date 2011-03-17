@@ -1,3 +1,5 @@
+var crypto = require('crypto');
+
 var settings = require('./settings');
 var models = require('./models');
 

@@ -42,6 +42,12 @@ app.configure('development', function(){
 
 app.configure('production', function(){
   app.use(express.errorHandler());
+
+  // 500 Handler
+  app.error(function(err, req, res) {
+    console.log(err.stack);
+    res.render('500.jade', {error: err});
+  });
 });
 
 app.use(app.router);
@@ -62,12 +68,6 @@ app.error(function(err, req, res, next) {
   } else {
     next(err);
   }
-});
-
-// 500 Handler
-app.error(function(err, req, res) {
-  console.log(err.stack);
-  res.render('500.jade', {error: err});
 });
 
 // Routes

@@ -1,5 +1,5 @@
 script(type: "text/javascript")
-  tinyMCE.init({ mode : "textareas", theme : "advanced" });
+  tinyMCE.init({ mode : "textareas", theme : "advanced", extended_valid_elements: "iframe[src|width|height|name|align]"});
 article
   a(href: '/admin/post') Back
   form(method: "POST")

@@ -12,6 +12,7 @@ article
     br
 
     label Content:
-    textarea(name: 'content', cols: 65, rows: 30)= post.content
+    textarea#editor(name: 'content', cols: 65, rows: 30)= post.content
 
     input(type: 'submit', value: 'Save')
+  input(type: 'button', value: 'Toggle editor', onClick: "tinymce.execCommand('mceToggleEditor',false,'editor');")

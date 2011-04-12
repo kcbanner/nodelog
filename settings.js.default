@@ -24,3 +24,6 @@ exports.google_site_verification = 'META TAG "CONTENT" FIELD'
 
 // For intensedebate comments
 exports.intensedebate_acct = 'INTENSEDEBATE IDCOMMENTS_ACCT';
+
+// For clicky analytics
+exports.clicky_id = false

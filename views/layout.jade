@@ -36,4 +36,20 @@ html
 
       section#content.centered!= body
         footer#bottom
+    br
+    - if(clicky_id)
+      a(title="Google Analytics Alternative", href="http://getclicky.com/"+clicky_id)
+        img(alt="Google Analytics Alternative", src="//static.getclicky.com/media/links/badge.gif", border="0")
+      script(type="text/javascript")
+        var clicky_site_id = !{clicky_id};
+        (function() {
+          var s = document.createElement('script');
+          s.type = 'text/javascript';
+          s.async = true;
+          s.src = '//static.getclicky.com/js';
+          ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+        })();
+      noscript
+        p
+          img(alt="Clicky", width="1", height="1", src="//in.getclicky.com/66404979ns.gif")
   

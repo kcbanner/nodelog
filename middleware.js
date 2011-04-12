@@ -2,6 +2,7 @@ var settings = require('./settings');
 var models = require('./models');
 
 exports.locals = function(req, res, next) {
+  res.local('clicky_id', settings.clicky_id);
   res.local('ga_id', settings.ga_id);
   res.local('ga_domain', settings.ga_domain);
   res.local('title', settings.title);

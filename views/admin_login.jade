@@ -1,9 +1,9 @@
 article
-  form(method: "POST")
+  form(method="POST")
     - if (error) 
       p Login failed.
     label Username:
-    input(name: 'username')
+    input(name='username')
     label Password:
-    input(name: 'password', type: 'password')
-    input(type: 'submit', value: 'Login')
+    input(name='password', type='password')
+    input(type='submit', value='Login')

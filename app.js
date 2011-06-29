@@ -68,7 +68,7 @@ app.error(function(err, req, res, next) {
 // 500 Handler
 app.error(function(err, req, res) {
   console.log(err.stack);
-  res.render('500.jade', {error: err});
+  res.render('500', {status: 500, error: err});
 });
 
 // Routes

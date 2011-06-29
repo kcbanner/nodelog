@@ -1,6 +1,6 @@
 article  
-  a(href: '/admin') Back
-  a(href: '/admin/post/new') New
+  a(href='/admin') Back
+  a(href='/admin/post/new') New
 
   table.admin
     thead
@@ -13,7 +13,7 @@ article
       - each post in posts
         tr
           td
-            a(href: '/admin/post/edit/'+post.id)= post.title
+            a(href='/admin/post/edit/'+post.id)= post.title
           td= post.date.format('MMMM, dd, yyyy')
           td
             - if(post.published)
@@ -21,4 +21,4 @@ article
             - else 
               | No
           td
-            a(href: '/admin/post/delete/'+post.id) Delete
+            a(href='/admin/post/delete/'+post.id) Delete

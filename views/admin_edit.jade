@@ -1,18 +1,18 @@
-script(type: "text/javascript")
+script(type="text/javascript")
   tinyMCE.init({ mode : "textareas", theme : "advanced", extended_valid_elements: "iframe[src|width|height|name|align]"});
 article
-  a(href: '/admin/post') Back
-  form(method: "POST")
+  a(href='/admin/post') Back
+  form(method="POST")
     label Title:
-    input(name: 'title', size: 60, value: post.title)
+    input(name='title', size=60, value=post.title)
     br
     label Permalink:
-    input(name: 'permalink', size: 60, value: post.permalink)
+    input(name='permalink', size=60, value=post.permalink)
     br
     br
 
     label Content:
-    textarea#editor(name: 'content', cols: 65, rows: 30)= post.content
+    textarea#editor(name='content', cols=65, rows=30)= post.content
 
-    input(type: 'submit', value: 'Save')
-  input(type: 'button', value: 'Toggle editor', onClick: "tinymce.execCommand('mceToggleEditor',false,'editor');")
+    input(type='submit', value='Save')
+  input(type='button', value='Toggle editor', onClick="tinymce.execCommand('mceToggleEditor',false,'editor');")

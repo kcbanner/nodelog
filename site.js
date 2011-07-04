@@ -1,6 +1,15 @@
 var settings = require('./settings');
 var models = require('./models');
 
+// Error handling
+var NotFound = exports.NotFound = function(msg) {
+  this.name = 'NotFound';
+  Error.call(this, msg);
+  Error.captureStackTrace(this, arguments.callee);
+};
+
+NotFound.prototype.__proto__ = Error.prototype;
+
 exports.feed = function(req, res) {
   var q = models.Post.find({published: true}).sort('date', -1).limit(20);
   q.execFind(function(err, posts) {
@@ -32,7 +41,7 @@ exports.post = function(req, res, next) {
   q.execFind(function(err, posts) {
     if(posts.length == 0) {
       // 404
-      return next(new NotFound);
+      next(new NotFound);
     } else {
       res.local('title', res.local('title')+' -  '+posts[0].title);
       res.local('post', posts[0]);

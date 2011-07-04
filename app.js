@@ -47,30 +47,6 @@ app.configure('production', function(){
 
 app.use(app.router);
 
-// Error handling
-function NotFound(msg) {
-  this.name = 'NotFound';
-  Error.call(this, msg);
-  Error.captureStackTrace(this, arguments.callee);
-}
-
-NotFound.prototype.__proto__ = Error.prototype;
-
-// 404 Handler
-app.error(function(err, req, res, next) {
-  if (err instanceof NotFound) {
-    res.render('404', {status: 404});
-  } else {
-    next(err);
-  }
-});
-
-// 500 Handler
-app.error(function(err, req, res) {
-  console.log(err.stack);
-  res.render('500', {status: 500, error: err});
-});
-
 // Routes
 app.get('/feed.rss', site.feed);
 app.get(/^\/(?:page\/(\d+))?$/, middleware.get_ad, site.index);
@@ -92,7 +68,22 @@ app.get('/admin/post/delete/:id', admin.require_login, admin.post_delete);
 
 // 404
 app.all('*', function(req, res, next) {
-  next(new NotFound);
+  next(new site.NotFound);
+});
+
+// 404 Handler
+app.error(function(err, req, res, next) {
+  if (err instanceof site.NotFound) {
+    res.render('404', {status: 404});
+  } else {
+    next(err);
+  }
+});
+
+// 500 Handler
+app.error(function(err, req, res) {
+  console.log(err.stack);
+  res.render('500', {status: 500, error: err});
 });
 
 // Only listen on $ node app.js

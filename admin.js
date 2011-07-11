@@ -138,6 +138,23 @@ exports.post_edit_save = function(req, res) {
   });
 };
 
+exports.post_toggle_publish = function(req, res) {
+  var q = models.Post.find({_id: req.params.id});
+  q.execFind(function(err, posts) {
+    if(posts.length == 1) {
+      var post = posts[0];
+      
+      post.published = !post.published;
+      
+      post.save(function(err) {
+        res.redirect('/admin/post');
+      });
+    } else {
+      return next(new NotFound);
+    }
+  });
+};
+
 exports.post_delete = function(req, res) {
   var q = models.Post.find({_id: req.params.id});
   q.execFind(function(err, posts) {

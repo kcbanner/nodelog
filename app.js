@@ -71,6 +71,7 @@ app.post('/admin/post/new', admin.require_login, admin.post_new_save);
 app.get('/admin/post/edit/:id', admin.require_login, admin.post_edit);
 app.post('/admin/post/edit/:id', admin.require_login, admin.post_edit_save);
 app.get('/admin/post/delete/:id', admin.require_login, admin.post_delete);
+app.get('/admin/post/publish/:id', admin.require_login, admin.post_toggle_publish);
 
 // 404
 app.all('*', function(req, res, next) {

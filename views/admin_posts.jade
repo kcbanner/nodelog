@@ -16,9 +16,10 @@ article
             a(href='/admin/post/edit/'+post.id)= post.title
           td= post.date.format('MMMM, dd, yyyy')
           td
-            - if(post.published)
-              | Yes
-            - else 
-              | No
+            a(href='/admin/post/publish/'+post.id)
+              - if(post.published)
+                | Yes
+              - else 
+                | No
           td
             a(href='/admin/post/delete/'+post.id) Delete

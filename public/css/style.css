@@ -4,7 +4,7 @@ ol,ul{list-style:none}
 table{border-collapse:collapse;border-spacing:0}
 html,body{height:100%}
 @font-face{font-family:"BebasRegular";font-style:normal;font-weight:normal;src:url("fonts/BEBAS___-webfont.eot?") format("eot"),url("fonts/BEBAS___-webfont.woff") format("woff"),url("fonts/BEBAS___-webfont.ttf") format("truetype"),url("fonts/BEBAS___-webfont.svg#webfontOJIfwzl6") format("svg")}
-body{line-height:1;font-family:Georgia,serif;background-color:#fff}
+body{line-height:1;font-family:Georgia,serif;background-color:#fff;min-width:1050px}
 a{color:#4b8a79;text-decoration:none;}
 a:hover{color:#d4421f}
 section#nav{position:fixed;left:0;top:0;width:145px;padding:20px 10px;font-family:BebasRegular,Helvetica,sans-serif;}

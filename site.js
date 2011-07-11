@@ -21,7 +21,7 @@ exports.feed = function(req, res) {
 };
 
 exports.index = function(req, res) {
-  var q = models.Post.find({published: true}).sort('date', -1).limit(settings.front_page_posts);
+  var q = models.Post.find({published: true}).sort('date', -1);
   var page = 0;
   if (req.params[0] !== undefined) {
     page = new Number(req.params[0]);

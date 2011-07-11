@@ -3,8 +3,8 @@ html
   head
     title= title
     link(rel='alternate', type='application/rss+xml', title='RSS', href=feed_url)
-    link(rel='stylesheet', href='/stylesheets/sh_emacs.min.css')
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/css/sh_emacs.min.css')
+    link(rel='stylesheet', href='/css/style.css')
     script(type='text/javascript', src='/javascripts/tiny_mce/tiny_mce.js')
     script(type='text/javascript', src='/javascripts/sh_main.min.js')
     - if (google_site_verification)
@@ -23,19 +23,18 @@ html
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
   body(onload="sh_highlightDocument('/javascripts/lang/', '.min.js');")
-    section
-      header#masthead
-        section.centered
-          a(href='/')
-            h1= blog_title
-          h2= tagline
-          ul
-            - each link in links
-              li
-                a(href=link[1])= link[0]
+    section#nav
+      div#profile
+        img#profile(src="/images/me.png")
+        a(href="/")
+          h1 Casey Banner
+      ul
+        - each link in links
+          li
+            a(href=link[1])= link[0]
+                                                          
+    section#middle!= body
 
-      section#content.centered!= body
-        footer#bottom
     br
     - if(clicky_id)
       a(title="Google Analytics Alternative", href="http://getclicky.com/"+clicky_id)

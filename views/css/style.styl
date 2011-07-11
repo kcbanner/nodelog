@@ -1,0 +1,154 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video
+  margin 0
+  padding 0
+  border 0
+  font-size 100%
+  font inherit
+  vertical-align baseline
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section
+  display block
+
+ol, ul
+  list-style none
+
+table
+  border-collapse collapse
+  border-spacing 0
+
+html, body
+  height 100%
+
+@font-face
+  font-family 'BebasRegular'
+  font-style normal
+  font-weight normal
+  src url('fonts/BEBAS___-webfont.eot?') format('eot'), url('fonts/BEBAS___-webfont.woff') format('woff'), url('fonts/BEBAS___-webfont.ttf') format('truetype'), url('fonts/BEBAS___-webfont.svg#webfontOJIfwzl6') format('svg')
+
+serif-font = Georgia, serif
+sans-serif-font = BebasRegular, Helvetica, sans-serif
+monospace-font = Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace
+
+body
+  line-height 1
+  font-family serif-font
+  background-color white
+
+link-color = #4b8a79
+orange-color = #f28c3e
+red-color = #d4421f
+yellow-color = #d0d969
+light-color = #5c5c5c
+
+a
+  color link-color
+  text-decoration none
+  &:hover
+    color red-color
+
+section#nav
+  position fixed
+  left 0px
+  top 0px
+  width 145px
+  padding 20px 10px
+  font-family sans-serif-font
+
+  div#profile
+    text-align center
+
+    a
+      color black
+      h1
+        margin-top 2px
+        font-weight bold
+        font-size 30px
+        -webkit-transition all 0.05s ease-in-out
+
+        &:hover
+          color red-color
+          -webkit-transform: rotate(-5deg);
+
+    img
+      border 2px solid lighten(orange-color, 20%)
+      padding 3px
+      text-align center
+      margin-bottom 10px
+
+  ul
+    margin-top 15px
+    li 
+      padding 5px
+      margin 5px
+      line-height 1.5
+      background-color orange-color
+      -webkit-transition all 0.05s ease-in-out
+
+      &:hover
+        background-color red-color
+        margin-left -10px
+        padding-left 20px
+      a
+        color white
+        text-decoration none
+        font-weight bold
+
+span.date
+  color light-color
+
+section#middle
+  padding 10px
+
+  margin 0px auto
+  width 720px
+
+  article
+    header
+      margin-bottom 30px
+      h2
+        font-family sans-serif-font
+        font-size 30px
+      span.date
+        float right
+
+    p
+      font-size 18px
+      line-height 2
+      margin-bottom 15px
+
+      &:nth-child(3)
+        text-indent 50px
+
+    pre
+      border 4px solid orange-color
+      padding 10px
+      margin-bottom 10px
+      font-family monospace-font
+      font-size 14px
+      line-height 1.1
+
+    div.ad
+      text-align center
+      padding 20px
+      margin 0px auto
+      width 540px
+
+ul.posts
+  li
+    padding 7px
+    border-bottom 1px solid lighten(light-color, 120%)
+    span.date
+      float right

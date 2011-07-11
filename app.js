@@ -5,6 +5,7 @@
 // Libs
 var express = require('express');
 var mongoose = require('mongoose');
+var stylus = require('stylus');
 var MongoStore = require('connect-mongo');
 
 var settings = require('./settings');
@@ -29,8 +30,13 @@ app.configure(function() {
       db: settings.db
     })
   }));
+
   app.use(middleware.locals);
-  app.use(express.compiler({ src: __dirname + '/public', enable: ['less'] }));
+  app.use(stylus.middleware({
+    compress: true,
+    src: __dirname + '/views',
+    dest: __dirname + '/public'
+  }));
 });
 
 app.configure('development', function(){

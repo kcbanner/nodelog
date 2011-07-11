@@ -1,0 +1,30 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+ol,ul{list-style:none}
+table{border-collapse:collapse;border-spacing:0}
+html,body{height:100%}
+@font-face{font-family:"BebasRegular";font-style:normal;font-weight:normal;src:url("fonts/BEBAS___-webfont.eot?") format("eot"),url("fonts/BEBAS___-webfont.woff") format("woff"),url("fonts/BEBAS___-webfont.ttf") format("truetype"),url("fonts/BEBAS___-webfont.svg#webfontOJIfwzl6") format("svg")}
+body{line-height:1;font-family:Georgia,serif;background-color:#fff}
+a{color:#4b8a79;text-decoration:none;}
+a:hover{color:#d4421f}
+section#nav{position:fixed;left:0;top:0;width:145px;padding:20px 10px;font-family:BebasRegular,Helvetica,sans-serif;}
+section#nav div#profile{text-align:center;}
+section#nav div#profile a{color:#000;}
+section#nav div#profile a h1{margin-top:2px;font-weight:bold;font-size:30px;-webkit-transition:all .05s ease-in-out;}
+section#nav div#profile a h1:hover{color:#d4421f;-webkit-transform:rotate(-5deg)}
+section#nav div#profile img{border:2px solid #f6ae77;padding:3px;text-align:center;margin-bottom:10px}
+section#nav ul{margin-top:15px;}
+section#nav ul li{padding:5px;margin:5px;line-height:1.5;background-color:#f28c3e;-webkit-transition:all .05s ease-in-out;}
+section#nav ul li:hover{background-color:#d4421f;margin-left:-10px;padding-left:20px}
+section#nav ul li a{color:#fff;text-decoration:none;font-weight:bold}
+span.date{color:#5c5c5c}
+section#middle{padding:10px;margin:0 auto;width:720px;}
+section#middle article header{margin-bottom:30px;}
+section#middle article header h2{font-family:BebasRegular,Helvetica,sans-serif;font-size:30px}
+section#middle article header span.date{float:right}
+section#middle article p{font-size:18px;line-height:2;margin-bottom:15px;}
+section#middle article p:nth-child(3){text-indent:50px}
+section#middle article pre{border:4px solid #f28c3e;padding:10px;margin-bottom:10px;font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace;font-size:14px;line-height:1.1}
+section#middle article div.ad{text-align:center;padding:20px;margin:0 auto;width:540px}
+ul.posts li{padding:7px;border-bottom:1px solid #cacaca;}
+ul.posts li span.date{float:right}

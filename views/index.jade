@@ -1,18 +1,5 @@
 - each post in posts
-  article
-    header
-      a(href='/'+post.date.format('yyyy/MM/dd/')+post.permalink)
-        h2= post.title
-        span.date #{post.date.format('MMMM dS, yyyy')}
-    p!= post.content
-    footer
-      - if (post == posts[0])
-        div.ad!= ad.code
-
-
-- if (page != 0)
-  a(href='/page/'+(page-1)) Newer posts 
-  | &nbsp; &nbsp; &nbsp;
-a(href='/page/'+(page+1)) Older posts
-br
-br
+  ul.posts
+    li
+      a(href='/'+post.date.format('yyyy/MM/dd/')+post.permalink)= post.title
+      span.date #{post.date.format('MMMM dS, yyyy')}

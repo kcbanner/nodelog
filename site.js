@@ -45,6 +45,11 @@ exports.post = function(req, res, next) {
     } else {
       res.local('title', res.local('title')+' -  '+posts[0].title);
       res.local('post', posts[0]);
+
+      if (/<pre/.exec(posts[0].content)) {
+        res.local('syntax_highlighting', true);
+      }
+      
       res.render('post');
     }
   });

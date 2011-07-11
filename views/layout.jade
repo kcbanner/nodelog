@@ -2,13 +2,12 @@
 html
   head
     title= title
-    link(rel='alternate', type='application/rss+xml', title='RSS', href=feed_url)
-    link(rel='stylesheet', href='/css/sh_emacs.min.css')
-    link(rel='stylesheet', href='/css/style.css')
-    script(type='text/javascript', src='/javascripts/tiny_mce/tiny_mce.js')
-    script(type='text/javascript', src='/javascripts/sh_main.min.js')
     - if (google_site_verification)
       meta(name="google-site-verification", content=google_site_verification)
+    link(rel='alternate', type='application/rss+xml', title='RSS', href=feed_url)
+    link(rel='stylesheet', href='/css/style.css')
+    - if (syntax_highlighting)
+      link(rel='stylesheet', href='/css/sh_emacs.min.css')
     - if (ga_id)
       script(type="text/javascript")
         var ga_id = !{JSON.stringify(ga_id)};
@@ -22,7 +21,7 @@ html
           ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
-  body(onload="sh_highlightDocument('/javascripts/lang/', '.min.js');")
+  body
     section#nav
       div#profile
         img#profile(src="/images/me.png")

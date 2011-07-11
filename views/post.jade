@@ -1,3 +1,10 @@
+- if (syntax_highlighting)
+  script(type='text/javascript', src='/javascripts/sh_main.min.js')
+  script(type='text/javascript')
+    window.addEventListener('load', function() {
+      sh_highlightDocument('/javascripts/lang/', '.min.js');
+    }, false);
+
 article
   header
     span.date #{post.date.format('MMMM dS, yyyy')}

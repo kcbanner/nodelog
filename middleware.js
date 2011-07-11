@@ -11,7 +11,8 @@ exports.locals = function(req, res, next) {
   res.local('about', settings.about);
   res.local('links', settings.links);
   res.local('url', settings.url);
-
+  res.local('syntax_highlighting', false);
+  
   if (settings.intensedebate_acct) {
     res.local('intensedebate_acct', settings.intensedebate_acct);
   } else {

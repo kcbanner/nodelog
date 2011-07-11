@@ -10,11 +10,11 @@ a:hover{color:#d4421f}
 section#nav{position:fixed;left:0;top:0;width:145px;padding:20px 10px;font-family:BebasRegular,Helvetica,sans-serif;}
 section#nav div#profile{text-align:center;}
 section#nav div#profile a{color:#000;}
-section#nav div#profile a h1{margin-top:2px;font-weight:bold;font-size:30px;-webkit-transition:all .05s ease-in-out;}
-section#nav div#profile a h1:hover{color:#d4421f;-webkit-transform:rotate(-5deg)}
+section#nav div#profile a h1{margin-top:2px;font-weight:bold;font-size:30px;-webkit-transition:all .05s ease-in-out;-moz-transition:all .05s ease-in-out;-o-transition:all .05s ease-in-out;}
+section#nav div#profile a h1:hover{color:#d4421f;-webkit-transform:rotate(-5deg);-moz-transform:rotate(-5deg);-o-transform:rotate(-5deg)}
 section#nav div#profile img{border:2px solid #f6ae77;padding:3px;text-align:center;margin-bottom:10px}
 section#nav ul{margin-top:15px;}
-section#nav ul li{padding:5px;margin:5px;line-height:1.5;background-color:#f28c3e;-webkit-transition:all .05s ease-in-out;}
+section#nav ul li{padding:5px;margin:5px;line-height:1.5;background-color:#f28c3e;-webkit-transition:all .05s ease-in-out;-moz-transition:all .05s ease-in-out;-o-transition:all .05s ease-in-out;}
 section#nav ul li:hover{background-color:#d4421f;margin-left:-10px;padding-left:20px}
 section#nav ul li a{color:#fff;text-decoration:none;font-weight:bold}
 span.date{color:#5c5c5c}

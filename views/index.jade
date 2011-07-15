@@ -1,5 +1,6 @@
-- each post in posts
-  ul.posts
+ul.posts
+  - each post in posts
     li
       a(href='/'+post.date.format('yyyy/MM/dd/')+post.permalink)= post.title
       span.date #{post.date.format('MMMM dS, yyyy')}
+  li.ad!= ad.code

@@ -1,9 +1,18 @@
-article
-  form(method="POST")
-    - if (error) 
-      p Login failed.
-    label Username:
-    input(name='username')
-    label Password:
-    input(name='password', type='password')
+h1 Admin Login
+
+
+form.admin(method="POST")
+  - if (error) 
+    p Login failed.
+
+  fieldset
+    ul
+      li
+        label Username:
+        input(name='username')
+      li
+        label Password:
+        input(name='password', type='password')
+  
+  fieldset
     input(type='submit', value='Login')

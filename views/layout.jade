@@ -24,16 +24,26 @@ html
   body
     section#nav
       div#profile
-        img#profile(src="/images/me.png")
+        img(src="/images/me.png")
         a(href="/")
           h1 Casey Banner
       ul
         - each link in links
           li
-            a(href=link[1])= link[0]
+            a.block(href=link[1])= link[0]
+      - if (admin)
+        br
+        h1 Admin
+        ul
+          li
+            a.block(href="/admin/post") Posts
+          li
+            a.block(href="/admin/ad") Ads
+          li
+            a.block(href='/admin/logout') Logout  
                                                           
     section#middle!= body
-
+    
     br
     - if(clicky_id)
       script(type="text/javascript")

@@ -5,6 +5,7 @@ var models = require('./models');
 
 exports.require_login = function (req, res, next) {
   if(req.session.user) {
+    res.local('admin', true);
     next();
   } else {
     res.redirect('/admin/login');
@@ -29,7 +30,7 @@ exports.login_post = function(req, res) {
     var hashed_passwd = crypto.createHash('sha1').update(settings.secret+req.param('password')).digest('hex');
     if(username == settings.admin.username && hashed_passwd == settings.admin.password) {
       req.session.user = true;
-      res.redirect('/admin');
+      res.redirect('/admin/post');
       return;
     }
   };

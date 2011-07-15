@@ -1,5 +1,6 @@
 var settings = require('./settings');
 var models = require('./models');
+var markdown = require('node-markdown').Markdown;
 
 // Error handling
 var NotFound = exports.NotFound = function(msg) {
@@ -43,10 +44,13 @@ exports.post = function(req, res, next) {
       // 404
       next(new NotFound);
     } else {
+      var content = markdown(posts[0].content);
+
       res.local('title', res.local('title')+' -  '+posts[0].title);
       res.local('post', posts[0]);
-
-      if (/<pre/.exec(posts[0].content)) {
+      res.local('content', content);
+      
+      if (/<pre/.exec(content)) {
         res.local('syntax_highlighting', true);
       }
       

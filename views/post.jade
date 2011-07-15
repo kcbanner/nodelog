@@ -9,7 +9,7 @@ article
   header
     span.date #{post.date.format('MMMM dS, yyyy')}
     h2= post['title']
-  p!= post.content
+  p!= content
   div.ad!= ad.code
   - if (intensedebate_acct)
     script

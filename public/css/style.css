@@ -53,6 +53,6 @@ div#resume{line-height:2em;}
 div#resume li{list-style-type:square;margin-left:35px}
 div#resume h3{font-size:18px;padding-left:5px;padding-top:10px}
 div#resume h2{font-family:'BebasRegular';font-weight:bold;font-size:20px;padding-top:10px;padding-bottom:10px}
-div#resume h1{font-family:'BebasRegular';font-size:50px;padding-top:15px}
+div#resume h1{font-family:'BebasRegular';font-size:50px;padding-top:15px;padding-bottom:20px}
 div#resume p{padding-left:20px;padding-top:5px;}
-div#resume p.bio{padding-top:15px;font-size:18px}
+div#resume p.bio{float:right;font-family:'BebasRegular';text-align:right;font-size:16px}

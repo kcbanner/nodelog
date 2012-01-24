@@ -21,6 +21,10 @@ exports.feed = function(req, res) {
   });
 };
 
+exports.resume = function(req, res) {
+  res.render('resume');
+};
+
 exports.index = function(req, res) {
   var q = models.Post.find({published: true}).sort('date', -1);
   var page = 0;

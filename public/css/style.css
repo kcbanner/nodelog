@@ -3,7 +3,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{di
 ol,ul{list-style:none}
 table{border-collapse:collapse;border-spacing:0}
 html,body{height:100%}
-@font-face{font-family:"BebasRegular";font-style:normal;font-weight:normal;src:url("fonts/BEBAS___-webfont.eot?") format("eot"),url("fonts/BEBAS___-webfont.woff") format("woff"),url("fonts/BEBAS___-webfont.ttf") format("truetype"),url("fonts/BEBAS___-webfont.svg#webfontOJIfwzl6") format("svg")}
+@font-face{font-family:'BebasRegular';font-style:normal;font-weight:normal;src:url("fonts/BEBAS___-webfont.eot?") format('eot'),url("fonts/BEBAS___-webfont.woff") format('woff'),url("fonts/BEBAS___-webfont.ttf") format('truetype'),url("fonts/BEBAS___-webfont.svg#webfontOJIfwzl6") format('svg')}
 body{line-height:1;font-family:Georgia,serif;background-color:#fff;min-width:1050px}
 a{color:#4b8a79;text-decoration:none;}
 a:hover{color:#d4421f}
@@ -15,7 +15,7 @@ section#nav div#profile{text-align:center;}
 section#nav div#profile a{color:#000;}
 section#nav div#profile a h1{margin-top:2px;font-weight:bold;font-size:30px;-webkit-transition:all .05s ease-in-out;-moz-transition:all .05s ease-in-out;-o-transition:all .05s ease-in-out;}
 section#nav div#profile a h1:hover{color:#d4421f;-webkit-transform:rotate(-5deg);-moz-transform:rotate(-5deg);-o-transform:rotate(-5deg)}
-section#nav div#profile img{border:2px solid #f6ae77;padding:3px;text-align:center;margin-bottom:10px;width:85px;height:85px}
+section#nav div#profile img{border:2px solid #f5a365;padding:3px;text-align:center;margin-bottom:10px;width:85px;height:85px}
 section#nav ul{margin-top:15px}
 a.block{background-color:#f28c3e;padding:5px;margin:5px;line-height:1.5;display:block;color:#fff;text-decoration:none;font-weight:bold;-webkit-transition:all .05s ease-in-out;-moz-transition:all .05s ease-in-out;-o-transition:all .05s ease-in-out;}
 a.block:hover{background-color:#d4421f;margin-left:-10px;padding-left:20px}
@@ -28,14 +28,14 @@ section#middle article p{font-size:18px;line-height:2;margin-bottom:15px;}
 section#middle article p:nth-child(3){text-indent:50px}
 section#middle article pre{border:4px solid #f28c3e;padding:10px;margin-bottom:10px;font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace;font-size:14px;line-height:1.1}
 section#middle article div.ad{text-align:center;padding:20px;margin:0 auto;width:540px}
-ul.posts li{padding:7px;border-bottom:1px solid #cacaca;}
+ul.posts li{padding:7px;border-bottom:1px solid #fff;}
 ul.posts li span.date{float:right}
 ul.posts li.ad{width:480px;margin:0 auto;text-align:center;border-bottom:none}
 table.admin{font-size:14px;border-spacing:5px;}
 table.admin th,table.admin td{padding:5px}
 table.admin thead tr{font-weight:bold;}
 table.admin thead tr th{text-align:left}
-table.admin tbody tr{border-bottom:1px solid #cacaca}
+table.admin tbody tr{border-bottom:1px solid #fff}
 ul.admin-links{list-style-type:none;margin:15px 0;padding:5px 0;}
 ul.admin-links li{display:inline;margin-right:5px;}
 ul.admin-links li a{font-weight:bold;font-family:BebasRegular,Helvetica,sans-serif;background-color:#f28c3e;padding:5px;color:#fff;}
@@ -49,3 +49,7 @@ form.admin input{width:500px;font-size:18px;}
 form.admin input[type=submit]{margin-left:120px}
 form.admin textarea{width:700px;font-size:12px;margin-top:10px}
 form.admin ul li{line-height:30px;padding:5px 10px}
+div#resume{line-height:2em;}
+div#resume li{list-style-type:square;margin-left:35px}
+div#resume h3{font-size:18px;padding-left:5px;padding-top:10px}
+div#resume h2{font-weight:bold;font-size:20px;padding-top:10px;padding-bottom:10px;text-decoration:underline}

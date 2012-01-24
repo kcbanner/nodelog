@@ -55,6 +55,7 @@ app.use(app.router);
 
 // Routes
 app.get('/feed.rss', site.feed);
+app.get('/resume', site.resume);
 app.get(/^\/(?:page\/(\d+))?$/, middleware.get_ad, site.index);
 app.get(/^\/(\d{4})\/(\d{2})\/(\d{2})\/([a-zA-Z-0-9]+)\/?/, middleware.get_ad, site.post);
 

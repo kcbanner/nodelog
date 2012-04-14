@@ -6,7 +6,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var stylus = require('stylus');
-var MongoStore = require('connect-mongo');
+var MongoStore = require('connect-mongo')(express);
 
 var settings = require('./settings');
 var db = mongoose.connect('mongodb://localhost/'+settings.db);

@@ -13,6 +13,7 @@ exports.locals = function(req, res, next) {
   res.local('links', settings.links);
   res.local('url', settings.url);
   res.local('syntax_highlighting', false);
+  res.local('ad', '');
   
   if (settings.intensedebate_acct) {
     res.local('intensedebate_acct', settings.intensedebate_acct);

@@ -12,7 +12,7 @@ if [ -f $PIDFILE ]; then
     rm -f -- $PIDFILE
 fi
 
-$NODE $APP 2>&1 >> $LOGFILE &
+NODE_ENV=$NODE_ENV $NODE $APP 2>&1 >> $LOGFILE &
 PID=$!
 echo "Node started, pid: $PID"
 echo $PID > $PIDFILE

@@ -27,7 +27,8 @@ app.configure(function() {
   app.use(express.session({
     secret: settings.cookie_secret,
     store: new MongoStore({
-      db: settings.db
+      db: settings.db,
+      clear_interval: 60
     })
   }));
 

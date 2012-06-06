@@ -25,6 +25,10 @@ exports.resume = function(req, res) {
   res.render('resume');
 };
 
+exports.freelance = function(req, res) {
+  res.render('freelance');
+};
+
 exports.index = function(req, res) {
   var q = models.Post.find({published: true}).sort('date', -1);
   var page = 0;
